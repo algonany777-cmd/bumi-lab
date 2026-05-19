@@ -1,12 +1,15 @@
 /*
  * BUMI LAB — Contact Section
  * Design: Full-width dark emerald section, inquiry form + distribution info
- * Features: Form with validation, distribution channel expansion note
+ * Features: Form with validation, distribution channel expansion note, lifestyle image
  */
 
 import { useState, useRef, useEffect } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { toast } from 'sonner';
+
+const CONTACT_LIFESTYLE_IMG =
+  'https://d2xsxph8kpxj0f.cloudfront.net/310519663388603264/FfX63THfQipTQqzBdN4z4M/bumi-contact-lifestyle-BJETy3xL6jG7WKUTYnUr5K.webp';
 
 export default function ContactSection() {
   const { lang } = useLanguage();
@@ -18,6 +21,7 @@ export default function ContactSection() {
   });
   const [submitting, setSubmitting] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
+  const imgRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const el = sectionRef.current;
@@ -25,6 +29,22 @@ export default function ContactSection() {
     const observer = new IntersectionObserver(
       ([entry]) => { if (entry.isIntersecting) el.classList.add('visible'); },
       { threshold: 0.05 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const el = imgRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          el.style.opacity = '1';
+          el.style.transform = 'translateY(0)';
+        }
+      },
+      { threshold: 0.1 }
     );
     observer.observe(el);
     return () => observer.disconnect();
@@ -93,7 +113,7 @@ export default function ContactSection() {
         </div>
 
         <div className="grid md:grid-cols-12 gap-16">
-          {/* Left: Info */}
+          {/* Left: Info + Image */}
           <div className="md:col-span-4">
             <h2 className="font-display text-4xl md:text-5xl text-[#F5F2EC] leading-[1.1] mb-8">
               {lang === 'ko' ? (
@@ -121,7 +141,7 @@ export default function ContactSection() {
             </div>
 
             {/* Contact details */}
-            <div className="space-y-4">
+            <div className="space-y-4 mb-10">
               {contactDetails.map((item) => (
                 <div key={item.label} className="flex gap-4">
                   <span className="font-mono-lab text-[10px] text-[#A8C5AC] uppercase tracking-widest w-20 shrink-0 mt-0.5">
@@ -130,6 +150,30 @@ export default function ContactSection() {
                   <span className="font-body text-sm text-[#F5F2EC]/70">{item.value}</span>
                 </div>
               ))}
+            </div>
+
+            {/* Lifestyle image */}
+            <div
+              ref={imgRef}
+              className="relative overflow-hidden"
+              style={{
+                opacity: 0,
+                transform: 'translateY(24px)',
+                transition: 'opacity 0.8s cubic-bezier(0.23,1,0.32,1) 0.2s, transform 0.8s cubic-bezier(0.23,1,0.32,1) 0.2s',
+              }}
+            >
+              <img
+                src={CONTACT_LIFESTYLE_IMG}
+                alt={lang === 'ko' ? 'BUMI LAB 스킨케어 리추얼' : 'BUMI LAB skincare ritual'}
+                className="w-full h-52 object-cover"
+                loading="lazy"
+              />
+              {/* Subtle overlay matching section bg */}
+              <div className="absolute inset-0 bg-[#0D3D2E]/20 pointer-events-none" />
+              <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-[#0D3D2E]/60 to-transparent" />
+              <p className="absolute bottom-3 left-4 font-mono-lab text-[9px] tracking-[0.25em] text-[#A8C5AC]/80 uppercase">
+                {lang === 'ko' ? 'Clean Science Ritual' : 'Clean Science Ritual'}
+              </p>
             </div>
           </div>
 

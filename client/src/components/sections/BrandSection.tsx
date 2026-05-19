@@ -8,10 +8,14 @@ import { useRef, useEffect } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
 
+const BRAND_OCEAN_IMG =
+  'https://d2xsxph8kpxj0f.cloudfront.net/310519663388603264/FfX63THfQipTQqzBdN4z4M/bumi-brand-ocean-Zw3ncf7Sb8ug9nHZ9nYpmq.webp';
+
 export default function BrandSection() {
   const { lang } = useLanguage();
   const sectionRef = useScrollReveal(0.1);
   const staggerRef = useRef<HTMLDivElement>(null);
+  const imgRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const el = staggerRef.current;
@@ -21,6 +25,22 @@ export default function BrandSection() {
         if (entry.isIntersecting) el.classList.add('visible');
       },
       { threshold: 0.1 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const el = imgRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          el.style.opacity = '1';
+          el.style.transform = 'translateY(0)';
+        }
+      },
+      { threshold: 0.15 }
     );
     observer.observe(el);
     return () => observer.disconnect();
@@ -84,18 +104,73 @@ export default function BrandSection() {
                 </>
               )}
             </h2>
-            <p className="font-body text-base md:text-lg text-[#1C1C1A]/65 leading-relaxed max-w-lg">
+            <p className="font-body text-base md:text-lg text-[#1C1C1A]/65 leading-relaxed max-w-lg mb-10">
               {lang === 'ko'
                 ? '부미랩은 유니즈랩의 독자적인 해양 스피큘 기술을 바탕으로 탄생한 K-뷰티 스킨케어 브랜드입니다. 깊은 바다의 해면동물에서 추출한 스피큘의 미세 침투 원리를 피부 케어에 적용하여, 피부 본연의 재생 능력을 과학적으로 활성화합니다.'
                 : "BUMI LAB is a K-beauty skincare brand born from Unislab's proprietary marine spicule technology. By applying the micro-penetration principle of spicules extracted from deep-sea sponges, we scientifically activate the skin's natural regeneration capabilities."}
             </p>
+
+            {/* Brand image — visible on mobile below text, on desktop inside left column */}
+            <div
+              ref={imgRef}
+              className="block md:hidden relative overflow-hidden"
+              style={{
+                opacity: 0,
+                transform: 'translateY(24px)',
+                transition: 'opacity 0.7s cubic-bezier(0.23,1,0.32,1), transform 0.7s cubic-bezier(0.23,1,0.32,1)',
+              }}
+            >
+              <img
+                src={BRAND_OCEAN_IMG}
+                alt={lang === 'ko' ? '해양 해면동물과 스피큘 결정체' : 'Marine sponge and spicule crystals'}
+                className="w-full h-64 object-cover"
+                loading="lazy"
+              />
+              <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-[#F5F2EC] to-transparent" />
+            </div>
           </div>
 
-          {/* Right: Brand values */}
+          {/* Right: Brand image (desktop) + Brand values */}
           <div
             ref={staggerRef}
             className="md:col-span-5 stagger-children"
           >
+            {/* Image — desktop only, above value cards */}
+            <div
+              className="hidden md:block relative overflow-hidden mb-8"
+              style={{
+                opacity: 0,
+                transform: 'translateY(24px)',
+                transition: 'opacity 0.8s cubic-bezier(0.23,1,0.32,1) 0.15s, transform 0.8s cubic-bezier(0.23,1,0.32,1) 0.15s',
+              }}
+              ref={(el) => {
+                if (!el) return;
+                const obs = new IntersectionObserver(
+                  ([entry]) => {
+                    if (entry.isIntersecting) {
+                      el.style.opacity = '1';
+                      el.style.transform = 'translateY(0)';
+                    }
+                  },
+                  { threshold: 0.1 }
+                );
+                obs.observe(el);
+              }}
+            >
+              <img
+                src={BRAND_OCEAN_IMG}
+                alt={lang === 'ko' ? '해양 해면동물과 스피큘 결정체' : 'Marine sponge and spicule crystals'}
+                className="w-full h-72 object-cover"
+                loading="lazy"
+              />
+              {/* Caption overlay */}
+              <div className="absolute bottom-0 left-0 right-0 px-4 py-3 bg-gradient-to-t from-[#0D3D2E]/70 to-transparent">
+                <p className="font-mono-lab text-[10px] tracking-[0.25em] text-[#A8C5AC] uppercase">
+                  {lang === 'ko' ? 'Porifera Spicule · 해면동물 스피큘' : 'Porifera Spicule · Marine Origin'}
+                </p>
+              </div>
+            </div>
+
             {values.map((item) => (
               <div
                 key={item.num}
