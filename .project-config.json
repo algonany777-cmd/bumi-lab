@@ -1,0 +1,35 @@
+{
+  "build_command": "pnpm run build",
+  "capabilities": [],
+  "dev_command": "pnpm run dev",
+  "env_vars": {},
+  "experiments": null,
+  "git_remote": {
+    "repo_url": "s3://vida-prod-gitrepo/webdev-git/310519663388603264/FfX63THfQipTQqzBdN4z4M",
+    "access_key_id": "ASIAZV3A2ECZBHZNC73J",
+    "secret_access_key": "ROIFfTWDpzjC+GihQJ3TV/rIjkI/9FaHJBOdYMZI",
+    "session_token": "IQoJb3JpZ2luX2VjEAUaCXVzLWVhc3QtMSJHMEUCICZ/sxTYusE33jX6fUqdkenYRO9BX9dIjHpTA1blSgtdAiEA9UWEhyTyemRrP0kBFJUcJN20QPd0gC+zkCjKhAI8xSMq/wMIzf//////////ARAEGgw2NjUzODYwOTg4NjYiDLMxsxseiWVasNEytSrTA2gajDnwzRdqf9NUXAoOWSPp/vBei2oZRLn5QBjRlkis0RXK95iz6jIlb2Bckr+YWtABQT9ujbl7a+ANb2eSS/kCkOLI4z6emU3XtUYRNlXqDMmzE4MMCm0f36Lb5tTZdVFQhQDrauT7L7QS8ry2s07ybkHONW4Nz8AlDaar7iAoCrbPtPXc240FqcY5aSmWZwCsiRsLjS0ffUFGSvja6U5+KNGLIIpzCFTeiumGnI6cOWwArHQ+mZ0doJyOeIZL1ZooNMfznjs0agtMWTW9JMA1Vb3ARD4mk1/KwuVHS6PChbNlU8e+nm5FyAXyWTHQ0BjcewiW/R9m/UkSMhGgqDAX7CC3UiPe1tLpC7AYTz9NJVxGrqYRuWKuYpnx1/ovpvEj1DB1oyEHM0/8fJgMM6xltXD5p1krnth7ioXYGhIGNKgos8Adn9e6hYtpFSTyT+qCAJn5F/B1HSrgnq5Ts8jatYBUuUqRQtS4RZiiIZvn/fCLlOl3fnhax0feVZkHcMyAYePraxon5HzSbYu9j5Y7nbVzDVXg8CItA3jlHY0FJST8ZaM9e8x8morml11BdZpHHTCFZvMvZXQmUVtzLk68Fne6j3EDSGRBJ4kSMM+29duqMOHGr9AGOp0Bt3r3HBPqvbHDDDQSMitqYUnlySPlibrjgHDwr4KVIzV+UNWWkEVlP7sE3hvqGUglCP3icOHWZMMdwkjzjQ5g6GkJLvBr+6reKadIbZ+1x4YKhCVVukjji1OUS2nir8VV90pMw2ba4EIe7Po3chKtx/ny8Bhk51e3W+y5hRHvu+MLbRCqUYWMyYuDBcKiorPDR7pDS/LaM49ABuJ4RA==",
+    "expiration": "2026-05-19T16:13:21.000Z"
+  },
+  "name": "bumi-lab",
+  "path": "/home/ubuntu/bumi-lab",
+  "port": 3000,
+  "secrets": {
+    "BUILT_IN_FORGE_API_KEY": "fC6R6jY8eMznWDBSMpuC3X",
+    "BUILT_IN_FORGE_API_URL": "https://forge.manus.ai",
+    "JWT_SECRET": "6SKe4pQtQrh5qHfC4HDErG",
+    "OAUTH_SERVER_URL": "https://api.manus.im",
+    "OWNER_NAME": "영한 프라임에셋 유",
+    "OWNER_OPEN_ID": "GTfu62fUbTEUP6w92ejcFA",
+    "VITE_ANALYTICS_ENDPOINT": "https://manus-analytics.com",
+    "VITE_ANALYTICS_WEBSITE_ID": "27f97719-f1cf-4970-9eb2-f8b050756b9e",
+    "VITE_APP_ID": "FfX63THfQipTQqzBdN4z4M",
+    "VITE_APP_LOGO": "",
+    "VITE_APP_TITLE": "BUMI LAB - Clean Science Ritual",
+    "VITE_FRONTEND_FORGE_API_KEY": "38BLuiMWKz8zvRKNPvENoy",
+    "VITE_FRONTEND_FORGE_API_URL": "https://forge.manus.ai",
+    "VITE_OAUTH_PORTAL_URL": "https://manus.im"
+  },
+  "template_id": "web-static",
+  "test_command": "pnpm test"
+}
