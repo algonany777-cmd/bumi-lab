@@ -23,10 +23,20 @@ function SharePanel({
   onClose: () => void;
 }) {
   const [copied, setCopied] = useState(false);
+  // closing state drives the exit animation before unmounting
+  const [closing, setClosing] = useState(false);
   const pageUrl = window.location.href;
-  const shareText = lang === 'ko'
-    ? `BUMI LAB — ${productName}`
-    : `BUMI LAB — ${productName}`;
+  const shareText = `BUMI LAB — ${productName}`;
+
+  // Trigger exit animation, then call parent's onClose after it finishes
+  const handleClose = useCallback(() => {
+    setClosing(true);
+  }, []);
+
+  // When the panel animation ends, if we're in closing state, unmount
+  const handleAnimationEnd = useCallback(() => {
+    if (closing) onClose();
+  }, [closing, onClose]);
 
   const handleCopy = useCallback(async () => {
     try {
@@ -34,7 +44,6 @@ function SharePanel({
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch {
-      // fallback for older browsers
       const ta = document.createElement('textarea');
       ta.value = pageUrl;
       document.body.appendChild(ta);
@@ -47,9 +56,7 @@ function SharePanel({
   }, [pageUrl]);
 
   const handleKakao = useCallback(() => {
-    // KakaoTalk share via app URI scheme (mobile) or web sharer
     const kakaoUrl = `https://sharer.kakao.com/talk/friends/picker/link?app_key=&link_ver=4.0&template_id=&url=${encodeURIComponent(pageUrl)}`;
-    // Use Web Share API if available (mobile), else open KakaoTalk link
     if (navigator.share) {
       navigator.share({ title: shareText, url: pageUrl }).catch(() => {});
     } else {
@@ -74,35 +81,64 @@ function SharePanel({
   }, [pageUrl, shareText]);
 
   return (
-    /* Backdrop */
     <div
       className="fixed inset-0 z-[60] flex items-end sm:items-center justify-center"
-      onClick={onClose}
+      onClick={handleClose}
+      style={{
+        animation: closing
+          ? 'backdropFadeOut 220ms cubic-bezier(0.4,0,1,1) forwards'
+          : 'backdropFadeIn 260ms cubic-bezier(0.23,1,0.32,1) forwards',
+      }}
     >
-      {/* Dim */}
+      <style>{`
+        @keyframes backdropFadeIn {
+          from { opacity: 0; }
+          to   { opacity: 1; }
+        }
+        @keyframes backdropFadeOut {
+          from { opacity: 1; }
+          to   { opacity: 0; }
+        }
+        @keyframes panelSlideUp {
+          from { transform: translateY(28px) scale(0.98); opacity: 0; }
+          to   { transform: translateY(0)    scale(1);    opacity: 1; }
+        }
+        @keyframes panelSlideDown {
+          from { transform: translateY(0)    scale(1);    opacity: 1; }
+          to   { transform: translateY(28px) scale(0.98); opacity: 0; }
+        }
+        @keyframes panelFadeIn {
+          from { transform: scale(0.97) translateY(8px); opacity: 0; }
+          to   { transform: scale(1)    translateY(0);   opacity: 1; }
+        }
+        @keyframes panelFadeOut {
+          from { transform: scale(1)    translateY(0);   opacity: 1; }
+          to   { transform: scale(0.97) translateY(8px); opacity: 0; }
+        }
+      `}</style>
+
+      {/* Dim overlay */}
       <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" />
 
-      {/* Panel */}
+      {/* Panel — mobile: slides up/down; desktop: fades in/out with subtle scale */}
       <div
         className="relative w-full sm:w-[360px] bg-[#F5F2EC] rounded-t-2xl sm:rounded-2xl shadow-2xl
                    p-6 pb-8 sm:pb-6 z-10"
-        style={{ animation: 'slideUpPanel 260ms cubic-bezier(0.23,1,0.32,1)' }}
+        style={{
+          animation: closing
+            ? 'panelSlideDown 220ms cubic-bezier(0.4,0,1,1) forwards'
+            : 'panelSlideUp 280ms cubic-bezier(0.23,1,0.32,1) forwards',
+        }}
+        onAnimationEnd={handleAnimationEnd}
         onClick={e => e.stopPropagation()}
       >
-        <style>{`
-          @keyframes slideUpPanel {
-            from { transform: translateY(24px); opacity: 0; }
-            to   { transform: translateY(0);    opacity: 1; }
-          }
-        `}</style>
-
         {/* Header */}
         <div className="flex items-center justify-between mb-5">
           <h3 className="font-display text-base text-[#0D3D2E]">
             {lang === 'ko' ? '공유하기' : 'Share'}
           </h3>
           <button
-            onClick={onClose}
+            onClick={handleClose}
             className="w-7 h-7 flex items-center justify-center text-[#6B8F71] hover:text-[#0D3D2E] transition-colors"
             aria-label="Close share panel"
           >
@@ -119,7 +155,9 @@ function SharePanel({
                        text-[#0D3D2E] hover:text-[#6B8F71] transition-colors"
             aria-label="Copy link"
           >
-            {copied ? <Check size={12} className="text-[#6B8F71]" /> : <Link2 size={12} />}
+            {copied
+              ? <Check size={12} className="text-[#6B8F71]" />
+              : <Link2 size={12} />}
             {copied
               ? (lang === 'ko' ? '복사됨' : 'Copied')
               : (lang === 'ko' ? '복사' : 'Copy')}
@@ -135,14 +173,11 @@ function SharePanel({
             aria-label="Share via KakaoTalk"
           >
             <span className="w-12 h-12 flex items-center justify-center bg-[#FEE500] group-hover:brightness-95 transition-all duration-200 active:scale-95">
-              {/* Kakao bubble icon */}
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
                 <path d="M12 3C6.477 3 2 6.477 2 10.8c0 2.7 1.56 5.08 3.93 6.52L5 21l4.22-2.3A11.4 11.4 0 0 0 12 18.6c5.523 0 10-3.477 10-7.8S17.523 3 12 3Z" fill="#3C1E1E"/>
               </svg>
             </span>
-            <span className="font-mono-lab text-[9px] tracking-wide text-[#6B8F71]">
-              KakaoTalk
-            </span>
+            <span className="font-mono-lab text-[9px] tracking-wide text-[#6B8F71]">KakaoTalk</span>
           </button>
 
           {/* X (Twitter) */}
@@ -228,7 +263,6 @@ export default function ProductDetail() {
       {/* ── Top bar ── */}
       <header className="sticky top-0 z-50 bg-[#F5F2EC]/95 backdrop-blur-md border-b border-[#0D3D2E]/10">
         <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between gap-4">
-          {/* Left: back + breadcrumb */}
           <div className="flex items-center gap-3 min-w-0">
             <Link
               href="/#products"
@@ -242,8 +276,6 @@ export default function ProductDetail() {
               {name}
             </span>
           </div>
-
-          {/* Right: brand mark */}
           <Link href="/" className="shrink-0 font-display text-sm tracking-[0.15em] text-[#0D3D2E] hover:opacity-70 transition-opacity">
             BUMI LAB
           </Link>
@@ -275,7 +307,6 @@ export default function ProductDetail() {
       {/* ── Bottom bar ── */}
       <footer className="sticky bottom-0 z-50 bg-[#0D3D2E] border-t border-white/10">
         <div className="max-w-[1280px] mx-auto px-3 sm:px-6 h-16 flex items-center justify-between gap-3">
-          {/* Left: back link */}
           <Link
             href="/#products"
             className="flex items-center gap-1.5 font-mono-lab text-[10px] sm:text-[11px] tracking-widest text-[#A8C5AC] hover:text-white transition-colors uppercase shrink-0"
@@ -285,9 +316,7 @@ export default function ProductDetail() {
             <span className="sm:hidden">{lang === 'ko' ? '목록' : 'Back'}</span>
           </Link>
 
-          {/* Right: CTA buttons */}
           <div className="flex items-center gap-2">
-            {/* Price tag */}
             <span className="hidden sm:block font-mono-lab text-sm text-[#A8C5AC]">
               ₩{product.price.toLocaleString('ko-KR')}
             </span>
@@ -331,7 +360,7 @@ export default function ProductDetail() {
         </div>
       </footer>
 
-      {/* ── Share panel (modal) ── */}
+      {/* ── Share panel (animated modal) ── */}
       {shareOpen && (
         <SharePanel
           productName={name}
