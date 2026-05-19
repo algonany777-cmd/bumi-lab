@@ -1,16 +1,22 @@
 /*
  * BUMI LAB — Products Section
- * Design: Offset grid layout, product cards with hover reveal
- * Products: Sourced from shared data/products.ts — click navigates to /products/:slug
+ * Design: Offset grid layout, product cards with hover reveal + cart add button
  */
 
 import { useRef, useEffect } from 'react';
 import { Link } from 'wouter';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useCart } from '@/contexts/CartContext';
 import { PRODUCTS } from '@/data/products';
+import { ShoppingBag } from 'lucide-react';
+
+function fmt(n: number) {
+  return `₩${n.toLocaleString('ko-KR')}`;
+}
 
 function ProductCard({ product, index }: { product: typeof PRODUCTS[number]; index: number }) {
   const { lang } = useLanguage();
+  const { addItem } = useCart();
   const cardRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -26,16 +32,28 @@ function ProductCard({ product, index }: { product: typeof PRODUCTS[number]; ind
 
   const benefits = (lang === 'ko' ? product.forWhomKo : product.forWhomEn).slice(0, 3);
 
+  const handleAddToCart = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    addItem({
+      id: product.id,
+      nameKo: product.nameKo,
+      nameEn: product.nameEn,
+      img: product.img,
+      price: product.price,
+    });
+  };
+
   return (
     <div
       ref={cardRef}
       className="reveal-up group"
       style={{ transitionDelay: `${index * 80}ms` }}
     >
-      <Link href={`/products/${product.slug}`} className="block h-full">
-        <div className="bg-white border border-[#0D3D2E]/8 hover:border-[#0D3D2E]/25 transition-all duration-300 hover:shadow-xl overflow-hidden h-full flex flex-col cursor-pointer">
-          {/* Image */}
-          <div className="relative overflow-hidden bg-[#F0EDE6]" style={{ aspectRatio: '4/4.5' }}>
+      <div className="bg-white border border-[#0D3D2E]/8 hover:border-[#0D3D2E]/25 transition-all duration-300 hover:shadow-xl overflow-hidden h-full flex flex-col">
+        {/* Image — click navigates to detail */}
+        <Link href={`/products/${product.slug}`} className="block">
+          <div className="relative overflow-hidden bg-[#F0EDE6] cursor-pointer" style={{ aspectRatio: '4/4.5' }}>
             <img
               src={product.img}
               alt={lang === 'ko' ? product.nameKo : product.nameEn}
@@ -90,29 +108,55 @@ function ProductCard({ product, index }: { product: typeof PRODUCTS[number]; ind
               </div>
             </div>
           </div>
+        </Link>
 
-          {/* Info */}
-          <div className="p-5 flex flex-col flex-1">
-            <div className="flex items-center justify-between mb-2">
-              <span className="font-mono-lab text-[10px] tracking-widest text-[#6B8F71] border border-[#6B8F71]/40 px-2 py-0.5">
-                {lang === 'ko' ? product.tagKo : product.tagEn}
+        {/* Info */}
+        <div className="p-5 flex flex-col flex-1">
+          <div className="flex items-center justify-between mb-2">
+            <span className="font-mono-lab text-[10px] tracking-widest text-[#6B8F71] border border-[#6B8F71]/40 px-2 py-0.5">
+              {lang === 'ko' ? product.tagKo : product.tagEn}
+            </span>
+          </div>
+          <h3 className="font-serif-kr text-base font-medium text-[#0D3D2E] mb-1 leading-snug">
+            {lang === 'ko' ? product.nameKo : product.nameEn}
+          </h3>
+          <p className="font-body text-xs text-[#6B8F71] mb-2">
+            {lang === 'ko' ? product.subtitleKo : product.subtitleEn}
+          </p>
+          <p className="font-body text-sm text-[#1C1C1A]/55 leading-relaxed mb-4 flex-1">
+            {lang === 'ko' ? product.heroDescKo.slice(0, 80) + '…' : product.heroDescEn.slice(0, 90) + '…'}
+          </p>
+
+          {/* Price + action buttons */}
+          <div className="mt-auto space-y-2">
+            <div className="flex items-center justify-between">
+              <span className="font-display text-lg text-[#0D3D2E]">{fmt(product.price)}</span>
+              <span className="font-mono-lab text-[10px] text-[#6B8F71]/60">
+                {lang === 'ko' ? '무료배송 ₩50,000~' : 'Free ship ₩50,000+'}
               </span>
             </div>
-            <h3 className="font-serif-kr text-base font-medium text-[#0D3D2E] mb-1 leading-snug">
-              {lang === 'ko' ? product.nameKo : product.nameEn}
-            </h3>
-            <p className="font-body text-xs text-[#6B8F71] mb-2">
-              {lang === 'ko' ? product.subtitleKo : product.subtitleEn}
-            </p>
-            <p className="font-body text-sm text-[#1C1C1A]/55 leading-relaxed mb-4 flex-1">
-              {lang === 'ko' ? product.heroDescKo.slice(0, 80) + '…' : product.heroDescEn.slice(0, 90) + '…'}
-            </p>
-            <div className="w-full border border-[#0D3D2E] text-[#0D3D2E] font-body text-sm tracking-wide py-2.5 text-center group-hover:bg-[#0D3D2E] group-hover:text-[#F5F2EC] transition-all duration-200 mt-auto">
-              {lang === 'ko' ? '상세 보기' : 'View Details'}
+            <div className="flex gap-2">
+              <Link
+                href={`/products/${product.slug}`}
+                className="flex-1 border border-[#0D3D2E]/30 text-[#0D3D2E] font-mono-lab text-[10px]
+                           tracking-widest py-2.5 text-center uppercase hover:border-[#0D3D2E]
+                           hover:bg-[#0D3D2E]/5 transition-all duration-200"
+              >
+                {lang === 'ko' ? '상세 보기' : 'Details'}
+              </Link>
+              <button
+                onClick={handleAddToCart}
+                className="flex-1 bg-[#0D3D2E] text-[#F5F2EC] font-mono-lab text-[10px]
+                           tracking-widest py-2.5 uppercase hover:bg-[#6B8F71] transition-colors
+                           duration-200 active:scale-[0.97] flex items-center justify-center gap-1.5"
+              >
+                <ShoppingBag size={12} />
+                {lang === 'ko' ? '담기' : 'Add'}
+              </button>
             </div>
           </div>
         </div>
-      </Link>
+      </div>
     </div>
   );
 }

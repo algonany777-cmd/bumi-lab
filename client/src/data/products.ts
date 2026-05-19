@@ -66,6 +66,9 @@ export interface ProductData {
   // Closing message
   closingKo: string;
   closingEn: string;
+
+  // Price (KRW)
+  price: number;
 }
 
 const IMGS = {
@@ -136,6 +139,7 @@ export const PRODUCTS: ProductData[] = [
     forWhomEn: ['Those bothered by specific areas more than the overall face', 'Those who want precise care for small targeted areas', 'Those seeking a low-burden routine without daily use'],
     closingKo: '필요한 부위에만, 필요한 만큼만. 스팟 케어의 정석을 경험해 보세요.',
     closingEn: 'Only where needed, only as much as needed. Experience the essence of spot care.',
+    price: 38000,
   },
   {
     id: 'mild-daily',
@@ -187,6 +191,7 @@ export const PRODUCTS: ProductData[] = [
     forWhomEn: ['Those starting a spicule routine for the first time', 'Those seeking a daily cream gentle enough for sensitive days', 'Those who prefer refined skin texture over heavy shine'],
     closingKo: '강한 인상을 남기지 않아도 계속 찾게 되는 크림. 매일의 만족감이 쌓이는 루틴형 데일리 케어입니다.',
     closingEn: 'A cream you keep reaching for without making a strong statement. A routine-based daily care that accumulates daily satisfaction.',
+    price: 45000,
   },
   {
     id: 'ha-ampoule',
@@ -240,6 +245,7 @@ export const PRODUCTS: ProductData[] = [
     forWhomEn: ['Those troubled by inner dryness and flakiness', 'Those wanting vivid hydration from a single use', 'Those needing 72-hour moisture retention'],
     closingKo: '단 한 번으로도 확실히 다른 수분의 밀도. 72시간 보습 리듬을 경험해 보세요.',
     closingEn: 'A noticeably different moisture density from just one use. Experience the 72-hour hydration rhythm.',
+    price: 52000,
   },
   {
     id: 'vita-c',
@@ -292,6 +298,7 @@ export const PRODUCTS: ProductData[] = [
     forWhomEn: ['Those troubled by dull and rough-looking skin', 'Those wanting a fresher, more special Vitamin C experience', 'Those seeking both clear radiance and refined skin texture'],
     closingKo: '칙칙함이 먼저 보였다면, 이제는 광채가 먼저 보이게. 비타민 C와 스피큘이 만나는 순간을 경험해 보세요.',
     closingEn: 'If dullness was what you saw first, now let radiance be first. Experience the moment Vitamin C meets spicule.',
+    price: 58000,
   },
   {
     id: 'all-in-one',
@@ -344,6 +351,7 @@ export const PRODUCTS: ProductData[] = [
     forWhomEn: ['Those wanting to address multiple concerns (texture, tone, radiance) at once', 'Those needing intensive care the night before an important event', 'Those seeking a weekly intensive home care routine'],
     closingKo: '거친 결, 푸석한 인상, 칙칙한 톤까지. 올인원 프로 하나로 얼굴 전체 인상을 관리해 보세요.',
     closingEn: 'Rough texture, dull appearance, uneven tone. Manage your entire face impression with All-in-One Pro.',
+    price: 68000,
   },
   {
     id: 'brightening-set',
@@ -398,6 +406,7 @@ export const PRODUCTS: ProductData[] = [
     forWhomEn: ['When you want a more defined change than daily care', 'When spicule care interests you but soothing finish is also important', 'When you want both practicality and satisfaction from a set'],
     closingKo: '"스피큘의 존재감은 분명하게, 마무리는 편안하게." 이 한 문장으로 정리되는 3개 + 3개 홈케어 세트입니다.',
     closingEn: '"Spicule presence clearly felt, finish comfortably." This one sentence sums up the 3+3 home care set.',
+    price: 98000,
   },
 ];
 

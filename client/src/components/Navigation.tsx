@@ -2,11 +2,13 @@
  * BUMI LAB Navigation
  * Design: Clean Protocol — Swiss International Style
  * Fixed top nav with scroll-based background transition
- * Language toggle (KO/EN) on the right
+ * Language toggle (KO/EN) + Cart icon on the right
  */
 
 import { useState, useEffect } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useCart } from '@/contexts/CartContext';
+import { ShoppingBag } from 'lucide-react';
 
 const navItems = [
   { id: 'brand', ko: '브랜드', en: 'Brand' },
@@ -18,6 +20,7 @@ const navItems = [
 
 export default function Navigation() {
   const { lang, toggleLang, t } = useLanguage();
+  const { itemCount, openCart } = useCart();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -76,13 +79,31 @@ export default function Navigation() {
           </div>
 
           {/* Right controls */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3">
             {/* Language Toggle */}
             <button
               onClick={toggleLang}
               className="font-mono-lab text-xs tracking-widest border border-[#0D3D2E]/30 hover:border-[#0D3D2E] text-[#0D3D2E] px-3 py-1.5 transition-all duration-200 hover:bg-[#0D3D2E] hover:text-[#F5F2EC] btn-press"
             >
               {lang === 'ko' ? 'EN' : 'KO'}
+            </button>
+
+            {/* Cart Icon */}
+            <button
+              onClick={openCart}
+              aria-label={lang === 'ko' ? '장바구니 열기' : 'Open cart'}
+              className="relative w-9 h-9 flex items-center justify-center text-[#0D3D2E] hover:text-[#6B8F71] transition-colors duration-200 btn-press"
+            >
+              <ShoppingBag size={20} />
+              {itemCount > 0 && (
+                <span
+                  className="absolute -top-0.5 -right-0.5 w-4 h-4 rounded-full bg-[#0D3D2E] text-[#F5F2EC]
+                             font-mono-lab text-[9px] flex items-center justify-center leading-none"
+                  style={{ animation: 'cartBadgePop 300ms cubic-bezier(0.23,1,0.32,1)' }}
+                >
+                  {itemCount > 9 ? '9+' : itemCount}
+                </span>
+              )}
             </button>
 
             {/* Mobile menu toggle */}
@@ -104,6 +125,15 @@ export default function Navigation() {
           </div>
         </div>
       </nav>
+
+      {/* Cart badge pop animation */}
+      <style>{`
+        @keyframes cartBadgePop {
+          0%   { transform: scale(0.5); opacity: 0; }
+          70%  { transform: scale(1.2); }
+          100% { transform: scale(1);   opacity: 1; }
+        }
+      `}</style>
 
       {/* Mobile Menu Overlay */}
       <div

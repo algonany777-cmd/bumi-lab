@@ -1,15 +1,22 @@
 {
   "build_command": "pnpm run build",
-  "capabilities": [],
+  "capabilities": [
+    "db",
+    "server",
+    "user"
+  ],
   "dev_command": "pnpm run dev",
-  "env_vars": {},
+  "env_vars": {
+    "DATABASE_URL": "mysql://4NWvG5d9qZEU4EN.root:pZUz2p1Xj66eI58WTrCY@gateway06.us-east-1.prod.aws.tidbcloud.com:4000/FfX63THfQipTQqzBdN4z4M?ssl={\"rejectUnauthorized\":true}",
+    "DRIZZLE_DATABASE_URL": "mysql://4NWvG5d9qZEU4EN.root:pZUz2p1Xj66eI58WTrCY@gateway06.us-east-1.prod.aws.tidbcloud.com:4000/FfX63THfQipTQqzBdN4z4M?ssl={\"rejectUnauthorized\":true}"
+  },
   "experiments": null,
   "git_remote": {
     "repo_url": "s3://vida-prod-gitrepo/webdev-git/310519663388603264/FfX63THfQipTQqzBdN4z4M",
-    "access_key_id": "ASIAZV3A2ECZBHZNC73J",
-    "secret_access_key": "ROIFfTWDpzjC+GihQJ3TV/rIjkI/9FaHJBOdYMZI",
-    "session_token": "IQoJb3JpZ2luX2VjEAUaCXVzLWVhc3QtMSJHMEUCICZ/sxTYusE33jX6fUqdkenYRO9BX9dIjHpTA1blSgtdAiEA9UWEhyTyemRrP0kBFJUcJN20QPd0gC+zkCjKhAI8xSMq/wMIzf//////////ARAEGgw2NjUzODYwOTg4NjYiDLMxsxseiWVasNEytSrTA2gajDnwzRdqf9NUXAoOWSPp/vBei2oZRLn5QBjRlkis0RXK95iz6jIlb2Bckr+YWtABQT9ujbl7a+ANb2eSS/kCkOLI4z6emU3XtUYRNlXqDMmzE4MMCm0f36Lb5tTZdVFQhQDrauT7L7QS8ry2s07ybkHONW4Nz8AlDaar7iAoCrbPtPXc240FqcY5aSmWZwCsiRsLjS0ffUFGSvja6U5+KNGLIIpzCFTeiumGnI6cOWwArHQ+mZ0doJyOeIZL1ZooNMfznjs0agtMWTW9JMA1Vb3ARD4mk1/KwuVHS6PChbNlU8e+nm5FyAXyWTHQ0BjcewiW/R9m/UkSMhGgqDAX7CC3UiPe1tLpC7AYTz9NJVxGrqYRuWKuYpnx1/ovpvEj1DB1oyEHM0/8fJgMM6xltXD5p1krnth7ioXYGhIGNKgos8Adn9e6hYtpFSTyT+qCAJn5F/B1HSrgnq5Ts8jatYBUuUqRQtS4RZiiIZvn/fCLlOl3fnhax0feVZkHcMyAYePraxon5HzSbYu9j5Y7nbVzDVXg8CItA3jlHY0FJST8ZaM9e8x8morml11BdZpHHTCFZvMvZXQmUVtzLk68Fne6j3EDSGRBJ4kSMM+29duqMOHGr9AGOp0Bt3r3HBPqvbHDDDQSMitqYUnlySPlibrjgHDwr4KVIzV+UNWWkEVlP7sE3hvqGUglCP3icOHWZMMdwkjzjQ5g6GkJLvBr+6reKadIbZ+1x4YKhCVVukjji1OUS2nir8VV90pMw2ba4EIe7Po3chKtx/ny8Bhk51e3W+y5hRHvu+MLbRCqUYWMyYuDBcKiorPDR7pDS/LaM49ABuJ4RA==",
-    "expiration": "2026-05-19T16:13:21.000Z"
+    "access_key_id": "ASIAZV3A2ECZEMMPEZOB",
+    "secret_access_key": "PoSVVYCsa0RDrqlKJzXpmHmGID5OqJ98e0muLEOg",
+    "session_token": "IQoJb3JpZ2luX2VjEAYaCXVzLWVhc3QtMSJIMEYCIQCESZEHwg2J9O3mYzWLWsXHjx9ZKbSNV/WOhzrLXZ9y5gIhAKnV/mMnU64o/MKWuO4TspXAC5dbSqt4fr2izb6pyH8OKv8DCM///////////wEQBBoMNjY1Mzg2MDk4ODY2IgytjHorsoagJPtzPKcq0wMLd9zQy+pDglZGy8Vd0wNnZ8ofQVmAPNov1H0/VDC6qdLSQqW8DSKDIEbjsZcJUl/yOeAr6Gpx/fONi1pZR3gpNg9tG5aR0GSbiNNrTBf8kDUBn2aPvqe1dsE7fML7TS7IV5NRtd/xeZV3QahnmmIMzNytZ3AqzW9Xjkg9OxVEk/8ilw1TlmM/6MJAFgh4cBa/AUlZ5hLgwYisi4KFjAvWxMQ16/728xEk7xktZq9Z0w9WORjVWDsmwv+/bxuHY0F8iUlK+EyyRd2es9RXiuT4N6mvjrH2qoX33NJGFlTAPHWs6DLZvtd3VKiG7kdCde/jwWbfHz29yK+pOQQEkjmkFolPjY0CQRtWbQpE5vQ2VSMg+BDjdejfDeoqUm1HkWZ3vF3JOI+Vo7GeIJvx159fGDsjCMWDtFYUhYOC4r0/jmeiIZanG0U8xoY+dDGZKYIzDCUCXO3RjnBThfK3GLpa6ZyEdL1MFpcTw84P+MHOz4mNtjts7ll6ekZAA/33iMqSYupFBLns4i/+GmLAlUCWv+xouefJScwmsJNcfpn7YkEzgyGAOYyzQjUIyJiIW3bx4o+5tI2OGu1cJC+41hy8cxt+yYwhgD0Htr4OflduLXxgizCs8a/QBjqcAWB9sXSsIOn8SSKIh53hjt81XVvXG9E0vaU1FCZQKOVQclsUVJYNsGL8bkusLPMOjPrscXu9oIh4ilB5aL4MLx2V2D+NClH2D7U4xGrulgkNG07H0kYzrh7c84uNtGEbkPP/gMRe0tVzT8YyvzxDtWZDsG6XaCwbfesKHA84xnvVkSiPToDoeyKecQmQioS/nP5iloqcJqsi9uv+rg==",
+    "expiration": "2026-05-19T17:44:12.000Z"
   },
   "name": "bumi-lab",
   "path": "/home/ubuntu/bumi-lab",
@@ -24,7 +31,7 @@
     "VITE_ANALYTICS_ENDPOINT": "https://manus-analytics.com",
     "VITE_ANALYTICS_WEBSITE_ID": "27f97719-f1cf-4970-9eb2-f8b050756b9e",
     "VITE_APP_ID": "FfX63THfQipTQqzBdN4z4M",
-    "VITE_APP_LOGO": "",
+    "VITE_APP_LOGO": "https://files.manuscdn.com/user_upload_by_module/web_dev_logo/310519663388603264/kPtkjQxWJkHHIkEJ.png",
     "VITE_APP_TITLE": "BUMI LAB - Clean Science Ritual",
     "VITE_FRONTEND_FORGE_API_KEY": "38BLuiMWKz8zvRKNPvENoy",
     "VITE_FRONTEND_FORGE_API_URL": "https://forge.manus.ai",
