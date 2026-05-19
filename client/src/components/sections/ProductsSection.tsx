@@ -63,15 +63,21 @@ function ProductCard({ product, index }: { product: typeof PRODUCTS[number]; ind
   const handleBuyNow = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    buyNow({
-      id: product.id,
-      nameKo: product.nameKo,
-      nameEn: product.nameEn,
-      img: product.img,
-      price: product.price,
-      qty,
-    });
-    navigate('/checkout');
+    if (product.storeUrl) {
+      // 스마트스토어 링크가 있으면 새 탭으로 이동
+      window.open(product.storeUrl, '_blank', 'noopener,noreferrer');
+    } else {
+      // 링크 없으면 내부 결제 플로우
+      buyNow({
+        id: product.id,
+        nameKo: product.nameKo,
+        nameEn: product.nameEn,
+        img: product.img,
+        price: product.price,
+        qty,
+      });
+      navigate('/checkout');
+    }
   };
 
   return (
@@ -221,12 +227,21 @@ function ProductCard({ product, index }: { product: typeof PRODUCTS[number]; ind
               </button>
               <button
                 onClick={handleBuyNow}
-                className="flex-1 bg-[#0D3D2E] text-[#F5F2EC] font-mono-lab text-[10px]
-                           tracking-widest py-2.5 uppercase hover:bg-[#6B8F71] transition-colors
-                           duration-200 active:scale-[0.97] flex items-center justify-center gap-1.5"
+                disabled={!product.storeUrl && false}
+                className={`flex-1 font-mono-lab text-[10px] tracking-widest py-2.5 uppercase
+                           transition-colors duration-200 active:scale-[0.97]
+                           flex items-center justify-center gap-1.5
+                           ${
+                             product.storeUrl
+                               ? 'bg-[#0D3D2E] text-[#F5F2EC] hover:bg-[#6B8F71] cursor-pointer'
+                               : 'bg-[#0D3D2E]/30 text-[#F5F2EC]/50 cursor-not-allowed'
+                           }`}
+                title={!product.storeUrl ? (lang === 'ko' ? '준비 중' : 'Coming soon') : undefined}
               >
                 <Zap size={11} />
-                {lang === 'ko' ? '바로 구매' : 'Buy Now'}
+                {product.storeUrl
+                  ? (lang === 'ko' ? '바로 구매' : 'Buy Now')
+                  : (lang === 'ko' ? '준비 중' : 'Coming Soon')}
               </button>
             </div>
           </div>

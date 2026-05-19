@@ -69,6 +69,7 @@ export interface ProductData {
 
   // Price (KRW)
   price: number;
+  storeUrl?: string; // 네이버 스마트스토어 URL
 }
 
 const IMGS = {
@@ -140,6 +141,7 @@ export const PRODUCTS: ProductData[] = [
     closingKo: '필요한 부위에만, 필요한 만큼만. 스팟 케어의 정석을 경험해 보세요.',
     closingEn: 'Only where needed, only as much as needed. Experience the essence of spot care.',
     price: 70000,
+    storeUrl: 'https://smartstore.naver.com/spicules/products/13495333310',
   },
   {
     id: 'mild-daily',
@@ -192,6 +194,7 @@ export const PRODUCTS: ProductData[] = [
     closingKo: '강한 인상을 남기지 않아도 계속 찾게 되는 크림. 매일의 만족감이 쌓이는 루틴형 데일리 케어입니다.',
     closingEn: 'A cream you keep reaching for without making a strong statement. A routine-based daily care that accumulates daily satisfaction.',
     price: 110000,
+    storeUrl: 'https://smartstore.naver.com/spicules/products/13495465420',
   },
   {
     id: 'ha-ampoule',
@@ -246,6 +249,7 @@ export const PRODUCTS: ProductData[] = [
     closingKo: '단 한 번으로도 확실히 다른 수분의 밀도. 72시간 보습 리듬을 경험해 보세요.',
     closingEn: 'A noticeably different moisture density from just one use. Experience the 72-hour hydration rhythm.',
     price: 150000,
+    storeUrl: 'https://smartstore.naver.com/spicules/products/13398935206',
   },
   {
     id: 'vita-c',
@@ -352,6 +356,7 @@ export const PRODUCTS: ProductData[] = [
     closingKo: '거친 결, 푸석한 인상, 칙칙한 톤까지. 올인원 프로 하나로 얼굴 전체 인상을 관리해 보세요.',
     closingEn: 'Rough texture, dull appearance, uneven tone. Manage your entire face impression with All-in-One Pro.',
     price: 100000,
+    storeUrl: 'https://smartstore.naver.com/spicules/products/13495373351',
   },
   {
     id: 'brightening-set',
@@ -407,6 +412,7 @@ export const PRODUCTS: ProductData[] = [
     closingKo: '"스피큘의 존재감은 분명하게, 마무리는 편안하게." 이 한 문장으로 정리되는 3개 + 3개 홈케어 세트입니다.',
     closingEn: '"Spicule presence clearly felt, finish comfortably." This one sentence sums up the 3+3 home care set.',
     price: 150000,
+    storeUrl: 'https://smartstore.naver.com/spicules/products/13495360097',
   },
 ];
 
