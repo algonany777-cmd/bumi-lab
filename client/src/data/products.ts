@@ -69,12 +69,18 @@ export interface ProductData {
 }
 
 const IMGS = {
+  // spot-cream: 주사기형 단품 (ACU-SHOT Spot Care Cream 라벨)
   spot: '/manus-storage/auin-spot-cream_021afe87.png',
+  // mild-daily: 펌프형 크림 단품 (Mild Daily Cream)
   mild: '/manus-storage/auin-mild-cream_686dd894.png',
-  syringe: '/manus-storage/auin-syringe-set_ffd7983c.png',
+  // ha-ampoule: 바이알+캡 세트 (녹색/흰색 알약 포함 — HA 앰플 형태)
+  ha: '/manus-storage/auin-vial-set_a8979d98.jpg',
+  // vita-c: 드로퍼+바이알 세트 (비타민C 파우더 앰플 형태)
+  vitac: '/manus-storage/auin-ha-set_97515706.png',
+  // all-in-one: 주사기×6 세트
+  allinone: '/manus-storage/auin-syringe-set_ffd7983c.png',
+  // brightening-set: 주사기+앰플 혼합 세트
   brightening: '/manus-storage/auin-brightening-set_eee5e8f3.png',
-  vial: '/manus-storage/auin-vial-set_a8979d98.jpg',
-  ha: '/manus-storage/auin-ha-set_97515706.png',
 };
 
 export const PRODUCTS: ProductData[] = [
@@ -246,7 +252,7 @@ export const PRODUCTS: ProductData[] = [
     tagKo: '브라이트닝',
     tagEn: 'Brightening',
     spiculeSize: '270μm',
-    img: IMGS.vial,
+    img: IMGS.vitac,
     imgAlt: 'AUIN ACU-SHOT Vita-C Powder Ampoule',
     heroTaglineKo: '한 병으로 끝내는 선명한 비타민 C 광채',
     heroTaglineEn: 'Brilliant Vitamin C Radiance in One Vial',
@@ -298,7 +304,7 @@ export const PRODUCTS: ProductData[] = [
     tagKo: '올인원 케어',
     tagEn: 'All-in-One',
     spiculeSize: '270μm',
-    img: IMGS.syringe,
+    img: IMGS.allinone,
     imgAlt: 'AUIN ACU-SHOT All-in-One Pro Cream',
     heroTaglineKo: '여러 피부 고민을 한 번에 관리하는 올인원 홈케어 루틴',
     heroTaglineEn: 'All-in-One Home Care Routine for Multiple Skin Concerns',
