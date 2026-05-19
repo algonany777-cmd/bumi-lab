@@ -11,8 +11,8 @@ export interface CartItem {
 
 interface CartCtx {
   items: CartItem[];
-  addItem: (item: Omit<CartItem, 'qty'>) => void;
-  buyNow: (item: Omit<CartItem, 'qty'>) => void; // 장바구니 초기화 후 단일 상품 세팅 (드로어 미오픈)
+  addItem: (item: Omit<CartItem, 'qty'>, qty?: number) => void;
+  buyNow: (item: Omit<CartItem, 'qty'> & { qty?: number }) => void;
   removeItem: (id: string) => void;
   updateQty: (id: string, qty: number) => void;
   clearCart: () => void;
@@ -29,19 +29,20 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([]);
   const [isOpen, setIsOpen] = useState(false);
 
-  const addItem = useCallback((item: Omit<CartItem, 'qty'>) => {
+  const addItem = useCallback((item: Omit<CartItem, 'qty'>, qty: number = 1) => {
+    const addQty = Math.max(1, qty);
     setItems(prev => {
       const existing = prev.find(i => i.id === item.id);
-      if (existing) return prev.map(i => i.id === item.id ? { ...i, qty: i.qty + 1 } : i);
-      return [...prev, { ...item, qty: 1 }];
+      if (existing) return prev.map(i => i.id === item.id ? { ...i, qty: i.qty + addQty } : i);
+      return [...prev, { ...item, qty: addQty }];
     });
     setIsOpen(true);
   }, []);
 
-  // 바로 구매: 기존 장바구니를 유지하되 해당 상품만 즉시 결제 페이지로 보내기 위해
-  // 장바구니를 해당 상품 1개로 교체하고 드로어는 열지 않음
-  const buyNow = useCallback((item: Omit<CartItem, 'qty'>) => {
-    setItems([{ ...item, qty: 1 }]);
+  // 바로 구매: 장바구니를 해당 상품 qty개로 교체하고 드로어는 열지 않음
+  const buyNow = useCallback((item: Omit<CartItem, 'qty'> & { qty?: number }) => {
+    const { qty = 1, ...rest } = item;
+    setItems([{ ...rest, qty: Math.max(1, qty) }]);
     setIsOpen(false);
   }, []);
 

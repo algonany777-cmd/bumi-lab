@@ -1,14 +1,14 @@
 /*
  * BUMI LAB — Products Section
- * Design: Offset grid layout, product cards with hover reveal + cart add button
+ * Design: Offset grid layout, product cards with hover reveal + quantity selector + cart/buy buttons
  */
 
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import { Link } from 'wouter';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useCart } from '@/contexts/CartContext';
 import { PRODUCTS } from '@/data/products';
-import { ShoppingBag, Zap } from 'lucide-react';
+import { ShoppingBag, Zap, Minus, Plus } from 'lucide-react';
 import { useLocation } from 'wouter';
 
 function fmt(n: number) {
@@ -20,6 +20,7 @@ function ProductCard({ product, index }: { product: typeof PRODUCTS[number]; ind
   const { addItem, buyNow } = useCart();
   const cardRef = useRef<HTMLDivElement>(null);
   const [, navigate] = useLocation();
+  const [qty, setQty] = useState(1);
 
   useEffect(() => {
     const el = cardRef.current;
@@ -34,6 +35,18 @@ function ProductCard({ product, index }: { product: typeof PRODUCTS[number]; ind
 
   const benefits = (lang === 'ko' ? product.forWhomKo : product.forWhomEn).slice(0, 3);
 
+  const handleDecrement = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setQty(q => Math.max(1, q - 1));
+  };
+
+  const handleIncrement = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setQty(q => Math.min(99, q + 1));
+  };
+
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
@@ -43,7 +56,8 @@ function ProductCard({ product, index }: { product: typeof PRODUCTS[number]; ind
       nameEn: product.nameEn,
       img: product.img,
       price: product.price,
-    });
+    }, qty);
+    setQty(1); // 담은 후 수량 초기화
   };
 
   const handleBuyNow = (e: React.MouseEvent) => {
@@ -55,6 +69,7 @@ function ProductCard({ product, index }: { product: typeof PRODUCTS[number]; ind
       nameEn: product.nameEn,
       img: product.img,
       price: product.price,
+      qty,
     });
     navigate('/checkout');
   };
@@ -142,14 +157,57 @@ function ProductCard({ product, index }: { product: typeof PRODUCTS[number]; ind
             {lang === 'ko' ? product.heroDescKo.slice(0, 80) + '…' : product.heroDescEn.slice(0, 90) + '…'}
           </p>
 
-          {/* Price + action buttons */}
-          <div className="mt-auto space-y-2">
+          {/* Price + quantity + action buttons */}
+          <div className="mt-auto space-y-3">
+            {/* Price row */}
             <div className="flex items-center justify-between">
-              <span className="font-display text-lg text-[#0D3D2E]">{fmt(product.price)}</span>
+              <div>
+                <span className="font-display text-lg text-[#0D3D2E]">{fmt(product.price * qty)}</span>
+                {qty > 1 && (
+                  <span className="font-mono-lab text-[10px] text-[#6B8F71]/70 ml-1.5">
+                    ({fmt(product.price)} × {qty})
+                  </span>
+                )}
+              </div>
               <span className="font-mono-lab text-[10px] text-[#6B8F71]/60">
                 {lang === 'ko' ? '무료배송 ₩50,000~' : 'Free ship ₩50,000+'}
               </span>
             </div>
+
+            {/* Quantity selector */}
+            <div className="flex items-center gap-2">
+              <span className="font-mono-lab text-[10px] tracking-widest text-[#1C1C1A]/40 uppercase">
+                {lang === 'ko' ? '수량' : 'Qty'}
+              </span>
+              <div className="flex items-center border border-[#0D3D2E]/20 overflow-hidden">
+                <button
+                  onClick={handleDecrement}
+                  disabled={qty <= 1}
+                  className="w-8 h-8 flex items-center justify-center text-[#0D3D2E]
+                             hover:bg-[#0D3D2E]/5 transition-colors duration-150
+                             disabled:opacity-30 disabled:cursor-not-allowed active:scale-[0.92]"
+                  aria-label="수량 감소"
+                >
+                  <Minus size={12} strokeWidth={2} />
+                </button>
+                <span className="w-9 h-8 flex items-center justify-center font-mono-lab text-sm
+                                 text-[#0D3D2E] border-x border-[#0D3D2E]/20 select-none">
+                  {qty}
+                </span>
+                <button
+                  onClick={handleIncrement}
+                  disabled={qty >= 99}
+                  className="w-8 h-8 flex items-center justify-center text-[#0D3D2E]
+                             hover:bg-[#0D3D2E]/5 transition-colors duration-150
+                             disabled:opacity-30 disabled:cursor-not-allowed active:scale-[0.92]"
+                  aria-label="수량 증가"
+                >
+                  <Plus size={12} strokeWidth={2} />
+                </button>
+              </div>
+            </div>
+
+            {/* Action buttons */}
             <div className="flex gap-2">
               <button
                 onClick={handleAddToCart}
