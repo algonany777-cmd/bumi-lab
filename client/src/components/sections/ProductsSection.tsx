@@ -39,7 +39,7 @@ function ProductCard({ product, index }: { product: typeof PRODUCTS[number]; ind
             <img
               src={product.img}
               alt={lang === 'ko' ? product.nameKo : product.nameEn}
-              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              className="w-full h-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:scale-110 will-change-transform"
             />
             {/* Badges */}
             <div className="absolute top-3 left-3 flex gap-2">
@@ -61,7 +61,7 @@ function ProductCard({ product, index }: { product: typeof PRODUCTS[number]; ind
             </div>
 
             {/* Hover overlay with benefits */}
-            <div className="absolute inset-0 bg-[#0D3D2E]/88 flex flex-col justify-end p-5 transition-opacity duration-300 opacity-0 group-hover:opacity-100">
+            <div className="absolute inset-0 bg-[#0D3D2E]/88 flex flex-col justify-end p-5 transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] opacity-0 translate-y-3 group-hover:opacity-100 group-hover:translate-y-0">
               <div className="font-mono-lab text-[10px] tracking-widest text-[#A8C5AC] uppercase mb-3">
                 {lang === 'ko' ? '주요 효과' : 'Key Benefits'}
               </div>
