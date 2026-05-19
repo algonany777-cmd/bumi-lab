@@ -8,7 +8,8 @@ import { Link } from 'wouter';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useCart } from '@/contexts/CartContext';
 import { PRODUCTS } from '@/data/products';
-import { ShoppingBag } from 'lucide-react';
+import { ShoppingBag, Zap } from 'lucide-react';
+import { useLocation } from 'wouter';
 
 function fmt(n: number) {
   return `₩${n.toLocaleString('ko-KR')}`;
@@ -16,8 +17,9 @@ function fmt(n: number) {
 
 function ProductCard({ product, index }: { product: typeof PRODUCTS[number]; index: number }) {
   const { lang } = useLanguage();
-  const { addItem } = useCart();
+  const { addItem, buyNow } = useCart();
   const cardRef = useRef<HTMLDivElement>(null);
+  const [, navigate] = useLocation();
 
   useEffect(() => {
     const el = cardRef.current;
@@ -42,6 +44,19 @@ function ProductCard({ product, index }: { product: typeof PRODUCTS[number]; ind
       img: product.img,
       price: product.price,
     });
+  };
+
+  const handleBuyNow = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    buyNow({
+      id: product.id,
+      nameKo: product.nameKo,
+      nameEn: product.nameEn,
+      img: product.img,
+      price: product.price,
+    });
+    navigate('/checkout');
   };
 
   return (
@@ -136,22 +151,24 @@ function ProductCard({ product, index }: { product: typeof PRODUCTS[number]; ind
               </span>
             </div>
             <div className="flex gap-2">
-              <Link
-                href={`/products/${product.slug}`}
-                className="flex-1 border border-[#0D3D2E]/30 text-[#0D3D2E] font-mono-lab text-[10px]
-                           tracking-widest py-2.5 text-center uppercase hover:border-[#0D3D2E]
-                           hover:bg-[#0D3D2E]/5 transition-all duration-200"
-              >
-                {lang === 'ko' ? '상세 보기' : 'Details'}
-              </Link>
               <button
                 onClick={handleAddToCart}
+                className="flex-1 border border-[#0D3D2E] text-[#0D3D2E] font-mono-lab text-[10px]
+                           tracking-widest py-2.5 uppercase hover:bg-[#0D3D2E] hover:text-[#F5F2EC]
+                           transition-all duration-200 active:scale-[0.97]
+                           flex items-center justify-center gap-1.5"
+              >
+                <ShoppingBag size={11} />
+                {lang === 'ko' ? '담기' : 'Add'}
+              </button>
+              <button
+                onClick={handleBuyNow}
                 className="flex-1 bg-[#0D3D2E] text-[#F5F2EC] font-mono-lab text-[10px]
                            tracking-widest py-2.5 uppercase hover:bg-[#6B8F71] transition-colors
                            duration-200 active:scale-[0.97] flex items-center justify-center gap-1.5"
               >
-                <ShoppingBag size={12} />
-                {lang === 'ko' ? '담기' : 'Add'}
+                <Zap size={11} />
+                {lang === 'ko' ? '바로 구매' : 'Buy Now'}
               </button>
             </div>
           </div>
