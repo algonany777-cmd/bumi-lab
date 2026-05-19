@@ -1,7 +1,9 @@
 import { useCart } from '@/contexts/CartContext';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { useLocation } from 'wouter';
-import { Minus, Plus, X, ShoppingBag } from 'lucide-react';
+import { Minus, Plus, X, ShoppingBag, ExternalLink } from 'lucide-react';
+import { PRODUCTS } from '@/data/products';
+
+const STORE_URL = 'https://smartstore.naver.com/spicules';
 
 const SHIPPING_THRESHOLD = 50000;
 const SHIPPING_FEE = 3000;
@@ -13,7 +15,19 @@ function fmt(n: number) {
 export default function CartDrawer() {
   const { items, isOpen, closeCart, removeItem, updateQty, subtotal } = useCart();
   const { lang } = useLanguage();
-  const [, navigate] = useLocation();
+
+  const handleCheckout = () => {
+    closeCart();
+    if (items.length === 1) {
+      // 단일 제품: 해당 제품 스마트스토어 페이지로
+      const product = PRODUCTS.find(p => p.id === items[0].id);
+      const url = product?.storeUrl ?? STORE_URL;
+      window.open(url, '_blank', 'noopener,noreferrer');
+    } else {
+      // 여러 제품: 스마트스토어 메인 페이지로
+      window.open(STORE_URL, '_blank', 'noopener,noreferrer');
+    }
+  };
 
   const shipping = subtotal >= SHIPPING_THRESHOLD ? 0 : (subtotal > 0 ? SHIPPING_FEE : 0);
   const total = subtotal + shipping;
@@ -162,13 +176,17 @@ export default function CartDrawer() {
               <span>{fmt(total)}</span>
             </div>
             <button
-              onClick={() => { closeCart(); navigate('/checkout'); }}
+              onClick={handleCheckout}
               className="w-full bg-[#0D3D2E] text-[#F5F2EC] font-mono-lab text-xs tracking-widest
                          py-4 uppercase hover:bg-[#6B8F71] transition-colors duration-300
-                         active:scale-[0.98] mt-2"
+                         active:scale-[0.98] mt-2 flex items-center justify-center gap-2"
             >
-              {lang === 'ko' ? '결제하기' : 'Checkout'}
+              <ExternalLink size={12} />
+              {lang === 'ko' ? '네이버 스마트스토어에서 구매' : 'Buy on Naver Smart Store'}
             </button>
+            <p className="text-center font-mono-lab text-[10px] text-[#6B8F71]/60 tracking-wide">
+              {lang === 'ko' ? '네이버페이 · 카드 · 계좌이체 결제 가능' : 'Naver Pay · Card · Bank Transfer'}
+            </p>
             <button
               onClick={closeCart}
               className="w-full border border-[#0D3D2E]/20 text-[#6B8F71] font-mono-lab text-xs
