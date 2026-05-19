@@ -6,9 +6,11 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { useParams, Link } from 'wouter';
-import { ArrowLeft, ChevronRight, Loader2 } from 'lucide-react';
+import { ArrowLeft, ChevronRight, Loader2, ExternalLink, ShoppingBag } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { getProductBySlug } from '@/data/products';
+
+const STORE_URL = 'https://smartstore.naver.com/spicules';
 
 export default function ProductDetail() {
   const { slug } = useParams<{ slug: string }>();
@@ -36,6 +38,8 @@ export default function ProductDetail() {
   }
 
   const name = lang === 'ko' ? product.nameKo : product.nameEn;
+  const hasStoreUrl = !!product.storeUrl;
+  const storeUrl = product.storeUrl ?? STORE_URL;
 
   return (
     <div className="min-h-screen flex flex-col bg-[#F5F2EC]">
@@ -79,7 +83,7 @@ export default function ProductDetail() {
           src={product.htmlUrl}
           title={name}
           className="w-full border-0"
-          style={{ minHeight: 'calc(100vh - 3.5rem)', height: '100%' }}
+          style={{ minHeight: 'calc(100vh - 3.5rem - 4rem)', height: '100%' }}
           onLoad={() => setLoading(false)}
           scrolling="yes"
           allow="autoplay"
@@ -88,20 +92,47 @@ export default function ProductDetail() {
 
       {/* ── Bottom bar ── */}
       <footer className="sticky bottom-0 z-50 bg-[#0D3D2E] border-t border-white/10">
-        <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between gap-4">
+        <div className="max-w-[1280px] mx-auto px-3 sm:px-6 h-16 flex items-center justify-between gap-3">
+          {/* Left: back link */}
           <Link
             href="/#products"
-            className="flex items-center gap-2 font-mono-lab text-[11px] tracking-widest text-[#A8C5AC] hover:text-white transition-colors uppercase"
+            className="flex items-center gap-1.5 font-mono-lab text-[10px] sm:text-[11px] tracking-widest text-[#A8C5AC] hover:text-white transition-colors uppercase shrink-0"
           >
-            <ArrowLeft size={12} />
-            {lang === 'ko' ? '제품 목록으로 돌아가기' : 'Back to All Products'}
+            <ArrowLeft size={11} />
+            <span className="hidden sm:inline">{lang === 'ko' ? '제품 목록으로 돌아가기' : 'Back to All Products'}</span>
+            <span className="sm:hidden">{lang === 'ko' ? '목록' : 'Back'}</span>
           </Link>
-          <Link
-            href="/#contact"
-            className="font-mono-lab text-[11px] tracking-widest text-[#F5F2EC] border border-[#F5F2EC]/30 px-4 py-2 hover:border-[#F5F2EC]/70 transition-colors uppercase"
-          >
-            {lang === 'ko' ? '문의하기' : 'Contact'}
-          </Link>
+
+          {/* Right: CTA buttons */}
+          <div className="flex items-center gap-2">
+            {/* Price tag */}
+            <span className="hidden sm:block font-mono-lab text-sm text-[#A8C5AC]">
+              ₩{product.price.toLocaleString('ko-KR')}
+            </span>
+
+            {/* Smart Store buy button */}
+            {hasStoreUrl ? (
+              <a
+                href={storeUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-1.5 bg-[#03C75A] text-white font-mono-lab text-[11px] tracking-widest
+                           px-4 py-2.5 uppercase hover:bg-[#02b350] transition-colors duration-200
+                           active:scale-[0.97]"
+              >
+                <ShoppingBag size={12} />
+                {lang === 'ko' ? '네이버 스마트스토어 구매' : 'Buy on Smart Store'}
+                <ExternalLink size={10} className="opacity-70" />
+              </a>
+            ) : (
+              <span
+                className="flex items-center gap-1.5 bg-[#A8C5AC]/30 text-[#A8C5AC] font-mono-lab text-[11px] tracking-widest
+                           px-4 py-2.5 uppercase cursor-not-allowed"
+              >
+                {lang === 'ko' ? '준비 중' : 'Coming Soon'}
+              </span>
+            )}
+          </div>
         </div>
       </footer>
     </div>
