@@ -24,6 +24,7 @@ export interface ProductPoint {
 }
 
 export interface ProductData {
+  htmlUrl: string; // Uploaded original HTML detail page URL
   id: string;
   slug: string;
   nameKo: string;
@@ -80,6 +81,7 @@ export const PRODUCTS: ProductData[] = [
   {
     id: 'spot-cream',
     slug: 'spot-cream',
+    htmlUrl: '/manus-storage/product-spot_1bb81a5c.html',
     nameKo: 'ACU-SHOT 스팟 케어 크림',
     nameEn: 'ACU-SHOT Spot Care Cream',
     subtitleKo: '고민 부위만 콕 케어',
@@ -132,6 +134,7 @@ export const PRODUCTS: ProductData[] = [
   {
     id: 'mild-daily',
     slug: 'mild-daily',
+    htmlUrl: '/manus-storage/product-mild_93e16c88.html',
     nameKo: 'ACU-SHOT 마일드 데일리 크림',
     nameEn: 'ACU-SHOT Mild Daily Cream',
     subtitleKo: '매일 바르는 순간까지 우아하게',
@@ -182,6 +185,7 @@ export const PRODUCTS: ProductData[] = [
   {
     id: 'ha-ampoule',
     slug: 'ha-ampoule',
+    htmlUrl: '/manus-storage/product-ha_d517d0e6.html',
     nameKo: 'ACU-SHOT HA 앰플',
     nameEn: 'ACU-SHOT HA Ampoule',
     subtitleKo: '72시간 차오르는 수분 리듬',
@@ -234,6 +238,7 @@ export const PRODUCTS: ProductData[] = [
   {
     id: 'vita-c',
     slug: 'vita-c',
+    htmlUrl: '/manus-storage/product-vitac_29362cf1.html',
     nameKo: 'ACU-SHOT 비타민C 파우더 앰플',
     nameEn: 'ACU-SHOT Vita-C Powder Ampoule',
     subtitleKo: '한 병으로 끝내는 선명한 광채',
@@ -285,6 +290,7 @@ export const PRODUCTS: ProductData[] = [
   {
     id: 'all-in-one',
     slug: 'all-in-one',
+    htmlUrl: '/manus-storage/product-allinone_565b12df.html',
     nameKo: 'ACU-SHOT 올인원 프로 크림',
     nameEn: 'ACU-SHOT All-in-One Pro Cream',
     subtitleKo: '여러 피부 고민을 한 번에',
@@ -336,6 +342,7 @@ export const PRODUCTS: ProductData[] = [
   {
     id: 'brightening-set',
     slug: 'brightening-set',
+    htmlUrl: '/manus-storage/product-brightening_22632eb0.html',
     nameKo: 'ACU-SHOT 브라이트닝 3+3 세트',
     nameEn: 'ACU-SHOT Brightening 3+3 Set',
     subtitleKo: '집중 케어 + 진정 앰플 세트',
