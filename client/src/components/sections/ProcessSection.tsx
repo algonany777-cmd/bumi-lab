@@ -141,11 +141,11 @@ export default function ProcessSection() {
               {/* Right: image + text */}
               <div className="flex-1 pb-2">
                 {/* Step image */}
-                <div className="w-full h-48 md:h-56 overflow-hidden rounded-sm mb-4">
+                <div className="group w-full h-48 md:h-56 overflow-hidden rounded-sm mb-4">
                   <img
                     src={PROCESS_IMGS[idx]}
                     alt={lang === 'ko' ? step.titleKo : step.titleEn}
-                    className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+                    className="w-full h-full object-cover scale-100 transition-transform duration-700 ease-out group-hover:scale-110"
                     loading="lazy"
                   />
                 </div>
