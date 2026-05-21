@@ -202,23 +202,35 @@ export default function BrandSection() {
               </div>
             </div>
 
-            {/* Mobile: simple text list */}
+            {/* Mobile: image + text stacked */}
             <div className="flex md:hidden flex-col">
               {values.map((item) => (
                 <div
                   key={item.num}
-                  className="flex gap-6 py-6 border-b border-[#0D3D2E]/10 last:border-0"
+                  className="py-6 border-b border-[#0D3D2E]/10 last:border-0"
                 >
-                  <span className="font-mono-lab text-xs text-[#6B8F71] mt-1 shrink-0">
-                    {item.num}
-                  </span>
-                  <div>
-                    <h3 className="font-serif-kr text-base font-medium text-[#0D3D2E] mb-2">
-                      {lang === 'ko' ? item.titleKo : item.titleEn}
-                    </h3>
-                    <p className="font-body text-sm text-[#1C1C1A]/60 leading-relaxed">
-                      {lang === 'ko' ? item.descKo : item.descEn}
-                    </p>
+                  {/* Image full-width */}
+                  <div className="relative w-full h-48 overflow-hidden rounded-sm mb-4">
+                    <img
+                      src={item.img}
+                      alt={lang === 'ko' ? item.imgAltKo : item.imgAltEn}
+                      className="w-full h-full object-cover"
+                      loading="lazy"
+                    />
+                  </div>
+                  {/* Text below image */}
+                  <div className="flex gap-4 items-start">
+                    <span className="font-mono-lab text-xs text-[#6B8F71] mt-0.5 shrink-0">
+                      {item.num}
+                    </span>
+                    <div>
+                      <h3 className="font-serif-kr text-base font-medium text-[#0D3D2E] mb-2">
+                        {lang === 'ko' ? item.titleKo : item.titleEn}
+                      </h3>
+                      <p className="font-body text-sm text-[#1C1C1A]/60 leading-relaxed">
+                        {lang === 'ko' ? item.descKo : item.descEn}
+                      </p>
+                    </div>
                   </div>
                 </div>
               ))}
