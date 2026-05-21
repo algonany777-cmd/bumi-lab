@@ -190,12 +190,7 @@ export default function ScienceSection() {
                       {lang === 'ko' ? m.descKo : m.descEn}
                     </div>
                   </div>
-                  <div
-                    className="shrink-0 font-mono-lab text-[10px] px-2 py-0.5 rounded-full"
-                    style={{ backgroundColor: m.color + '22', color: m.color }}
-                  >
-                    {lang === 'ko' ? m.layerKo : m.layerEn}
-                  </div>
+
                 </button>
               ))}
             </div>
