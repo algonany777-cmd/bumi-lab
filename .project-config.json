@@ -13,10 +13,10 @@
   "experiments": null,
   "git_remote": {
     "repo_url": "s3://vida-prod-gitrepo/webdev-git/310519663388603264/FfX63THfQipTQqzBdN4z4M",
-    "access_key_id": "ASIAZV3A2ECZEMMPEZOB",
-    "secret_access_key": "PoSVVYCsa0RDrqlKJzXpmHmGID5OqJ98e0muLEOg",
-    "session_token": "IQoJb3JpZ2luX2VjEAYaCXVzLWVhc3QtMSJIMEYCIQCESZEHwg2J9O3mYzWLWsXHjx9ZKbSNV/WOhzrLXZ9y5gIhAKnV/mMnU64o/MKWuO4TspXAC5dbSqt4fr2izb6pyH8OKv8DCM///////////wEQBBoMNjY1Mzg2MDk4ODY2IgytjHorsoagJPtzPKcq0wMLd9zQy+pDglZGy8Vd0wNnZ8ofQVmAPNov1H0/VDC6qdLSQqW8DSKDIEbjsZcJUl/yOeAr6Gpx/fONi1pZR3gpNg9tG5aR0GSbiNNrTBf8kDUBn2aPvqe1dsE7fML7TS7IV5NRtd/xeZV3QahnmmIMzNytZ3AqzW9Xjkg9OxVEk/8ilw1TlmM/6MJAFgh4cBa/AUlZ5hLgwYisi4KFjAvWxMQ16/728xEk7xktZq9Z0w9WORjVWDsmwv+/bxuHY0F8iUlK+EyyRd2es9RXiuT4N6mvjrH2qoX33NJGFlTAPHWs6DLZvtd3VKiG7kdCde/jwWbfHz29yK+pOQQEkjmkFolPjY0CQRtWbQpE5vQ2VSMg+BDjdejfDeoqUm1HkWZ3vF3JOI+Vo7GeIJvx159fGDsjCMWDtFYUhYOC4r0/jmeiIZanG0U8xoY+dDGZKYIzDCUCXO3RjnBThfK3GLpa6ZyEdL1MFpcTw84P+MHOz4mNtjts7ll6ekZAA/33iMqSYupFBLns4i/+GmLAlUCWv+xouefJScwmsJNcfpn7YkEzgyGAOYyzQjUIyJiIW3bx4o+5tI2OGu1cJC+41hy8cxt+yYwhgD0Htr4OflduLXxgizCs8a/QBjqcAWB9sXSsIOn8SSKIh53hjt81XVvXG9E0vaU1FCZQKOVQclsUVJYNsGL8bkusLPMOjPrscXu9oIh4ilB5aL4MLx2V2D+NClH2D7U4xGrulgkNG07H0kYzrh7c84uNtGEbkPP/gMRe0tVzT8YyvzxDtWZDsG6XaCwbfesKHA84xnvVkSiPToDoeyKecQmQioS/nP5iloqcJqsi9uv+rg==",
-    "expiration": "2026-05-19T17:44:12.000Z"
+    "access_key_id": "ASIAZV3A2ECZB5JGLXAC",
+    "secret_access_key": "Bym6XWBWIXfrGHNCJkWS5Cq0PxucRR5nkvaue86J",
+    "session_token": "IQoJb3JpZ2luX2VjEDgaCXVzLWVhc3QtMSJHMEUCIAf/9MxLeatFW70zbXIXiNdbGcwSzikUAyUWHLBsRuK1AiEA/+65dy4F2daqipt3Cdqb+wZhJbn3QYUdJ4CJnQpqfHwq9gMIABAEGgw2NjUzODYwOTg4NjYiDEYMMepCFwVDTgXAkCrTA7bnmoJPPdJp//tfEqsm+3x7lTaJpyr4viwDrUfMNneMd69WiQQPhO1N2aRr6J9tdDDUvwCZm4ldPiaHiHM9xD2dyIqI2IHQVp+Jp3NvCYrk/m1vxYU2iz2bgX1jJX4isr7x1wHjGV63hsGZfWIByd6fR9o2i0gqNtjMx98f6ZI/B85JV9/2iazWJqcxESiSGxDFRBLYXym7SWQWVXjxJy1jZbwGwFAu/k6Hqj3HdCwxLX367yr1lhG9kRn8bYnaJRIqZletRe1Sx5IUNYVfuLJZk3Kwly2dlGO6dIDyXYoGiELj1QPxViEBx82OuZgDfXGtgRPoLp272xX+hdE3gVDMLFMFcv+GxorAkLtuvdxlPFWrs+zmMhzufuJ/9EFCEERt3cl6FeNCYtb1XdG7iC0J1hXX12Bjduk4eQpJ83yNRUt+qHlW1iD2fwtxikKllYucQyLrHoVP9CjcUNSTu6XhFbJdhJo1VAUog9Lg0+e0qQljLv0ooGhnmEDuaHYpGPlk2YmBJAYD4feU/eCHz9GXuHKExZpmTUDhkinHq1gPXL+2+tzsY5tdVzueyVdWDgDUhIy6HJa6bI1qzz83yOCLZdRPiiYRsI1R6mv6T+fF2ltwMM3hutAGOp0B7Ibjy4bstKniNGfot8Vxxdp1hpU1hPtsGYduKnBrBO2BT+Y62S50zghlDS+4uliGnOkBKJT9IPMeaNPNnn7x+92agGC9IzGxJZh0N2HaXiDO91QgpB3i/hhdCcyBVOEZFh4rBXgyspcjWgqlbFwX7UoOkbBR0W3jiKvanUFGP9DtOPzwnTA5cuJ0389xLslvXXkl7ULCmGBgqLKoDw==",
+    "expiration": "2026-05-21T19:14:21.000Z"
   },
   "name": "bumi-lab",
   "path": "/home/ubuntu/bumi-lab",
@@ -24,10 +24,13 @@
   "secrets": {
     "BUILT_IN_FORGE_API_KEY": "fC6R6jY8eMznWDBSMpuC3X",
     "BUILT_IN_FORGE_API_URL": "https://forge.manus.ai",
+    "CONTACT_TO_EMAIL": "algonany@naver.com",
     "JWT_SECRET": "6SKe4pQtQrh5qHfC4HDErG",
     "OAUTH_SERVER_URL": "https://api.manus.im",
     "OWNER_NAME": "영한 프라임에셋 유",
     "OWNER_OPEN_ID": "GTfu62fUbTEUP6w92ejcFA",
+    "SMTP_PASS": "GDJJ8RGUSXXL",
+    "SMTP_USER": "algonany@naver.com",
     "VITE_ANALYTICS_ENDPOINT": "https://manus-analytics.com",
     "VITE_ANALYTICS_WEBSITE_ID": "27f97719-f1cf-4970-9eb2-f8b050756b9e",
     "VITE_APP_ID": "FfX63THfQipTQqzBdN4z4M",

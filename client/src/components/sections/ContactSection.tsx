@@ -69,7 +69,7 @@ export default function ContactSection() {
     setSubmitting(true);
 
     try {
-      const response = await fetch('https://formspree.io/f/xpwqndoa', {
+      const response = await fetch('/api/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -79,7 +79,6 @@ export default function ContactSection() {
           email: form.email,
           type: form.type,
           message: form.message,
-          _subject: `[BUMI LAB 문의] ${form.name}님의 문의입니다.`
         })
       });
 
