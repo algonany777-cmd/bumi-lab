@@ -11,6 +11,15 @@ import { useScrollReveal } from '@/hooks/useScrollReveal';
 const BRAND_OCEAN_IMG =
   'https://d2xsxph8kpxj0f.cloudfront.net/310519663388603264/FfX63THfQipTQqzBdN4z4M/bumi-brand-ocean-Zw3ncf7Sb8ug9nHZ9nYpmq.webp';
 
+const BRAND_SCIENCE_IMG =
+  'https://d2xsxph8kpxj0f.cloudfront.net/310519663388603264/FfX63THfQipTQqzBdN4z4M/brand-science-aQRUbekk4hdNMg3k7nrsnw.webp';
+
+const BRAND_SUSTAINABLE_IMG =
+  'https://d2xsxph8kpxj0f.cloudfront.net/310519663388603264/FfX63THfQipTQqzBdN4z4M/brand-sustainable-aTLjJm9NPLKmWYqYWYp5oS.webp';
+
+const BRAND_KBEAUTY_IMG =
+  'https://d2xsxph8kpxj0f.cloudfront.net/310519663388603264/FfX63THfQipTQqzBdN4z4M/brand-kbeauty-e89KH2G54NXrdF6RdmjM9p.webp';
+
 export default function BrandSection() {
   const { lang } = useLanguage();
   const sectionRef = useScrollReveal(0.1);
@@ -53,6 +62,11 @@ export default function BrandSection() {
       titleEn: 'Science-Based',
       descKo: '23단계 정제 공정을 통한 99.8% 고순도 스피큘. 모든 성분은 임상적으로 검증됩니다.',
       descEn: '99.8% pure spicule through a 23-step purification process. Every ingredient is clinically validated.',
+      img: BRAND_SCIENCE_IMG,
+      imgAltKo: '스피큘 결정체 연구실 클로즈업',
+      imgAltEn: 'Spicule crystals in research laboratory',
+      captionKo: '23단계 정제 · 99.8% 고순도',
+      captionEn: '23-Step Purification · 99.8% Purity',
     },
     {
       num: '02',
@@ -60,6 +74,11 @@ export default function BrandSection() {
       titleEn: 'Sustainable Sourcing',
       descKo: '독자적인 해면동물 양식 기술로 자연 훼손 없이 균일한 품질의 원료를 안정적으로 공급합니다.',
       descEn: 'Our proprietary sponge cultivation technology ensures stable supply of uniform-quality raw materials without harming nature.',
+      img: BRAND_SUSTAINABLE_IMG,
+      imgAltKo: '해면동물 수중 양식 장면',
+      imgAltEn: 'Marine sponge aquaculture underwater',
+      captionKo: '해면동물 양식 · 자연 친화적',
+      captionEn: 'Sponge Aquaculture · Eco-Friendly',
     },
     {
       num: '03',
@@ -67,6 +86,11 @@ export default function BrandSection() {
       titleEn: 'K-Beauty Ritual',
       descKo: '한국의 스킨케어 문화와 과학적 성분이 만나 매일의 피부 관리를 의식(儀式)으로 승화시킵니다.',
       descEn: 'Korean skincare culture meets scientific ingredients, elevating daily skincare into a meaningful ritual.',
+      img: BRAND_KBEAUTY_IMG,
+      imgAltKo: 'K-뷰티 스킨케어 리추얼 플랫레이',
+      imgAltEn: 'K-beauty skincare ritual flatlay',
+      captionKo: 'K-뷰티 · 매일의 의식',
+      captionEn: 'K-Beauty · Daily Ritual',
     },
   ];
 
@@ -110,10 +134,10 @@ export default function BrandSection() {
                 : "BUMI LAB is a K-beauty skincare brand born from Unislab's proprietary marine spicule technology. By applying the micro-penetration principle of spicules extracted from deep-sea sponges, we scientifically activate the skin's natural regeneration capabilities."}
             </p>
 
-            {/* Brand image — visible on mobile below text, on desktop inside left column */}
+            {/* Brand image — visible on mobile below text */}
             <div
               ref={imgRef}
-              className="block md:hidden relative overflow-hidden"
+              className="block md:hidden relative overflow-hidden rounded-sm"
               style={{
                 opacity: 0,
                 transform: 'translateY(24px)',
@@ -128,16 +152,23 @@ export default function BrandSection() {
               />
               <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-[#F5F2EC] to-transparent" />
             </div>
+
+            {/* Value cards with images — visible on desktop inside left column */}
+            <div className="hidden md:flex flex-col gap-6 mt-4">
+              {values.map((item, idx) => (
+                <ValueCard key={item.num} item={item} lang={lang} delay={idx * 120} />
+              ))}
+            </div>
           </div>
 
-          {/* Right: Brand image (desktop) + Brand values */}
+          {/* Right: Brand image (desktop) */}
           <div
             ref={staggerRef}
             className="md:col-span-5 stagger-children"
           >
-            {/* Image — desktop only, above value cards */}
+            {/* Main image — desktop only */}
             <div
-              className="hidden md:block relative overflow-hidden mb-8"
+              className="hidden md:block relative overflow-hidden rounded-sm mb-8"
               style={{
                 opacity: 0,
                 transform: 'translateY(24px)',
@@ -160,7 +191,7 @@ export default function BrandSection() {
               <img
                 src={BRAND_OCEAN_IMG}
                 alt={lang === 'ko' ? '해양 해면동물과 스피큘 결정체' : 'Marine sponge and spicule crystals'}
-                className="w-full h-72 object-cover"
+                className="w-full h-80 object-cover"
                 loading="lazy"
               />
               {/* Caption overlay */}
@@ -171,24 +202,27 @@ export default function BrandSection() {
               </div>
             </div>
 
-            {values.map((item) => (
-              <div
-                key={item.num}
-                className="flex gap-6 py-6 border-b border-[#0D3D2E]/10 last:border-0"
-              >
-                <span className="font-mono-lab text-xs text-[#6B8F71] mt-1 shrink-0">
-                  {item.num}
-                </span>
-                <div>
-                  <h3 className="font-serif-kr text-base font-medium text-[#0D3D2E] mb-2">
-                    {lang === 'ko' ? item.titleKo : item.titleEn}
-                  </h3>
-                  <p className="font-body text-sm text-[#1C1C1A]/60 leading-relaxed">
-                    {lang === 'ko' ? item.descKo : item.descEn}
-                  </p>
+            {/* Mobile: simple text list */}
+            <div className="flex md:hidden flex-col">
+              {values.map((item) => (
+                <div
+                  key={item.num}
+                  className="flex gap-6 py-6 border-b border-[#0D3D2E]/10 last:border-0"
+                >
+                  <span className="font-mono-lab text-xs text-[#6B8F71] mt-1 shrink-0">
+                    {item.num}
+                  </span>
+                  <div>
+                    <h3 className="font-serif-kr text-base font-medium text-[#0D3D2E] mb-2">
+                      {lang === 'ko' ? item.titleKo : item.titleEn}
+                    </h3>
+                    <p className="font-body text-sm text-[#1C1C1A]/60 leading-relaxed">
+                      {lang === 'ko' ? item.descKo : item.descEn}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
 
@@ -211,5 +245,82 @@ export default function BrandSection() {
         </div>
       </div>
     </section>
+  );
+}
+
+/* ── Value Card with image ── */
+interface ValueItem {
+  num: string;
+  titleKo: string;
+  titleEn: string;
+  descKo: string;
+  descEn: string;
+  img: string;
+  imgAltKo: string;
+  imgAltEn: string;
+  captionKo: string;
+  captionEn: string;
+}
+
+function ValueCard({ item, lang, delay }: { item: ValueItem; lang: string; delay: number }) {
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = cardRef.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          el.style.opacity = '1';
+          el.style.transform = 'translateY(0)';
+        }
+      },
+      { threshold: 0.1 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+
+  return (
+    <div
+      ref={cardRef}
+      className="group flex gap-5 items-start py-5 border-b border-[#0D3D2E]/10 last:border-0"
+      style={{
+        opacity: 0,
+        transform: 'translateY(20px)',
+        transition: `opacity 0.6s cubic-bezier(0.23,1,0.32,1) ${delay}ms, transform 0.6s cubic-bezier(0.23,1,0.32,1) ${delay}ms`,
+      }}
+    >
+      {/* Thumbnail image */}
+      <div className="relative shrink-0 w-24 h-20 overflow-hidden rounded-sm">
+        <img
+          src={item.img}
+          alt={lang === 'ko' ? item.imgAltKo : item.imgAltEn}
+          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+          loading="lazy"
+        />
+        {/* Dark overlay with caption on hover */}
+        <div className="absolute inset-0 bg-[#0D3D2E]/0 group-hover:bg-[#0D3D2E]/40 transition-colors duration-300 flex items-end">
+          <p className="font-mono-lab text-[8px] tracking-[0.2em] text-white/0 group-hover:text-white/90 transition-colors duration-300 px-2 pb-1.5 leading-tight uppercase">
+            {lang === 'ko' ? item.captionKo : item.captionEn}
+          </p>
+        </div>
+      </div>
+
+      {/* Text */}
+      <div className="flex gap-4 items-start flex-1">
+        <span className="font-mono-lab text-xs text-[#6B8F71] mt-0.5 shrink-0">
+          {item.num}
+        </span>
+        <div>
+          <h3 className="font-serif-kr text-base font-medium text-[#0D3D2E] mb-1.5">
+            {lang === 'ko' ? item.titleKo : item.titleEn}
+          </h3>
+          <p className="font-body text-sm text-[#1C1C1A]/60 leading-relaxed">
+            {lang === 'ko' ? item.descKo : item.descEn}
+          </p>
+        </div>
+      </div>
+    </div>
   );
 }
