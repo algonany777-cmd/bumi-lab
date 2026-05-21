@@ -1,14 +1,20 @@
 /*
  * BUMI LAB — Manufacturing Process Section
  * Design: Timeline layout on sage-green background, step-by-step process
- * Features: Animated timeline, manufacturing image
+ * Features: Animated timeline, per-step images
  */
 
 import { useRef, useEffect } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 
-const MFG_IMG =
-  'https://d2xsxph8kpxj0f.cloudfront.net/310519663388603264/FfX63THfQipTQqzBdN4z4M/bumi-manufacturing-KRtMUe8pkoUtQdgMkLuaX9.webp';
+const PROCESS_IMGS = [
+  'https://d2xsxph8kpxj0f.cloudfront.net/310519663388603264/FfX63THfQipTQqzBdN4z4M/process-01-cultivation-QYEuYGhU3RMoHc8hpwrmMs.webp',
+  'https://d2xsxph8kpxj0f.cloudfront.net/310519663388603264/FfX63THfQipTQqzBdN4z4M/process-02-extraction-Livu7T9q4LR8aJdvma7inv.webp',
+  'https://d2xsxph8kpxj0f.cloudfront.net/310519663388603264/FfX63THfQipTQqzBdN4z4M/process-03-purification-dmX5WND2Yz74i5uWoRauM2.webp',
+  'https://d2xsxph8kpxj0f.cloudfront.net/310519663388603264/FfX63THfQipTQqzBdN4z4M/process-04-classification-4ytLjpjymTty37QbBKwyT4.webp',
+  'https://d2xsxph8kpxj0f.cloudfront.net/310519663388603264/FfX63THfQipTQqzBdN4z4M/process-05-quality-32vZTTgckTAcDf3A6RF9PG.webp',
+  'https://d2xsxph8kpxj0f.cloudfront.net/310519663388603264/FfX63THfQipTQqzBdN4z4M/process-06-formulation-oPtvm6HBCJ4rcVsghauVmu.webp',
+];
 
 export default function ProcessSection() {
   const { lang } = useLanguage();
@@ -118,50 +124,41 @@ export default function ProcessSection() {
           </p>
         </div>
 
-        {/* Main layout: timeline + image */}
-        <div className="grid md:grid-cols-12 gap-12">
-          {/* Timeline */}
-          <div ref={timelineRef} className="md:col-span-7 stagger-children">
-            {steps.map((step) => (
-              <div key={step.num} className="flex gap-6 pb-8 last:pb-0">
-                {/* Left: number + connector */}
-                <div className="flex flex-col items-center">
-                  <div className="w-10 h-10 shrink-0 border border-[#0D3D2E] flex items-center justify-center">
-                    <span className="font-mono-lab text-xs text-[#0D3D2E]">{step.num}</span>
-                  </div>
-                  <div className="flex-1 w-px bg-[#0D3D2E]/15 mt-2 last:hidden" />
+        {/* Timeline — full width with per-step images */}
+        <div ref={timelineRef} className="stagger-children">
+          {steps.map((step, idx) => (
+            <div key={step.num} className="flex gap-6 pb-10 last:pb-0">
+              {/* Left: number + connector */}
+              <div className="flex flex-col items-center shrink-0">
+                <div className="w-10 h-10 border border-[#0D3D2E] flex items-center justify-center">
+                  <span className="font-mono-lab text-xs text-[#0D3D2E]">{step.num}</span>
                 </div>
-                {/* Right: content */}
-                <div className="pb-2">
-                  <h3 className="font-serif-kr text-base font-medium text-[#0D3D2E] mb-2">
-                    {lang === 'ko' ? step.titleKo : step.titleEn}
-                  </h3>
-                  <p className="font-body text-sm text-[#1C1C1A]/60 leading-relaxed">
-                    {lang === 'ko' ? step.descKo : step.descEn}
-                  </p>
-                </div>
+                {idx < steps.length - 1 && (
+                  <div className="flex-1 w-px bg-[#0D3D2E]/15 mt-2" />
+                )}
               </div>
-            ))}
-          </div>
 
-          {/* Image */}
-          <div className="md:col-span-5">
-            <div className="img-hover sticky top-24">
-              <img
-                src={MFG_IMG}
-                alt={lang === 'ko' ? '유니즈랩 제조 시설' : 'Unislab Manufacturing Facility'}
-                className="w-full aspect-[3/4] object-cover"
-              />
-              <div className="bg-[#0D3D2E] px-6 py-5">
-                <div className="font-mono-lab text-[10px] tracking-widest text-[#A8C5AC] uppercase mb-1">
-                  {lang === 'ko' ? '제조 시설' : 'Manufacturing Facility'}
+              {/* Right: image + text */}
+              <div className="flex-1 pb-2">
+                {/* Step image */}
+                <div className="w-full h-48 md:h-56 overflow-hidden rounded-sm mb-4">
+                  <img
+                    src={PROCESS_IMGS[idx]}
+                    alt={lang === 'ko' ? step.titleKo : step.titleEn}
+                    className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+                    loading="lazy"
+                  />
                 </div>
-                <div className="font-body text-sm text-[#F5F2EC]/80">
-                  {lang === 'ko' ? '유니즈랩 GMP 인증 생산 시설' : 'Unislab GMP-certified production facility'}
-                </div>
+                {/* Text */}
+                <h3 className="font-serif-kr text-base font-medium text-[#0D3D2E] mb-2">
+                  {lang === 'ko' ? step.titleKo : step.titleEn}
+                </h3>
+                <p className="font-body text-sm text-[#1C1C1A]/60 leading-relaxed">
+                  {lang === 'ko' ? step.descKo : step.descEn}
+                </p>
               </div>
             </div>
-          </div>
+          ))}
         </div>
 
         {/* Certifications */}
