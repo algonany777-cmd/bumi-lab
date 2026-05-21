@@ -97,8 +97,8 @@ export default function ScienceSection() {
     },
     {
       size: '270μm',
-      effectKo: '진피층 콜라겐 촉진',
-      effectEn: 'Dermal Collagen Boost',
+      effectKo: '심층 콜라겐 촉진',
+      effectEn: 'Deep Collagen Boost',
       descKo: '진피층까지 침투하여 콜라겐 합성을 촉진하고 탄력을 개선합니다.',
       descEn: 'Penetrates to the dermis to stimulate collagen synthesis and improve elasticity.',
       layerKo: '진피층',
@@ -108,8 +108,8 @@ export default function ScienceSection() {
     },
     {
       size: '320μm',
-      effectKo: '심층 재생 활성화',
-      effectEn: 'Deep Regeneration',
+      effectKo: '심층 재생 활성',
+      effectEn: 'Deep Regeneration Active',
       descKo: '피부 심층부의 재생 능력을 깨워 근본적인 피부 건강을 회복합니다.',
       descEn: 'Awakens deep skin regeneration capacity for fundamental skin health restoration.',
       layerKo: '피하층',
@@ -269,10 +269,10 @@ export default function ScienceSection() {
                     background: `linear-gradient(to top, ${m.color}ee 0%, ${m.color}44 40%, transparent 70%)`,
                   }}
                 />
-                {/* Content */}
-                <div className="absolute bottom-0 left-0 right-0 p-4">
+                {/* Content - always at bottom, fixed height */}
+                <div className="absolute bottom-0 left-0 right-0 p-4 flex flex-col justify-end" style={{ minHeight: '100px' }}>
                   <div
-                    className="font-mono-lab text-xs px-2 py-0.5 inline-block mb-2 rounded"
+                    className="font-mono-lab text-xs px-2 py-0.5 inline-block mb-2 rounded self-start"
                     style={{ backgroundColor: 'rgba(0,0,0,0.4)', color: '#F5F2EC', border: `1px solid ${m.color}88` }}
                   >
                     {m.size}
@@ -284,13 +284,7 @@ export default function ScienceSection() {
                     {lang === 'ko' ? m.descKo : m.descEn}
                   </div>
                 </div>
-                {/* Top size badge */}
-                <div
-                  className="absolute top-3 right-3 font-mono-lab text-[10px] px-2 py-0.5 rounded-full"
-                  style={{ backgroundColor: m.color + 'cc', color: '#0D3D2E' }}
-                >
-                  {lang === 'ko' ? m.layerKo : m.layerEn}
-                </div>
+
               </div>
             ))}
           </div>
