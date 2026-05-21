@@ -292,7 +292,7 @@ function ValueCard({ item, lang, delay }: { item: ValueItem; lang: string; delay
       }}
     >
       {/* Thumbnail image */}
-      <div className="relative shrink-0 w-24 h-20 overflow-hidden rounded-sm">
+      <div className="relative shrink-0 w-40 h-32 overflow-hidden rounded-sm">
         <img
           src={item.img}
           alt={lang === 'ko' ? item.imgAltKo : item.imgAltEn}
