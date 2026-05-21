@@ -24,6 +24,8 @@
 ## 향후 작업
 
 - [ ] 비타민C 파우더 앰플 스마트스토어 링크 추가 (스마트스토어 제품 등록 완료 후 products.ts storeUrl 업데이트 필요)
+- [x] ContactSection 문의 폼 Formspree 실제 전송 연동 (algonany@naver.com)
+- [x] 연락처 정보 업데이트: 이메일 algonany@naver.com, 전화 +82 1065579600, 사업자 부미랩/BUMI LAB
 - [x] 제품 상세 페이지(iframe) 하단 고정 바에 스마트스토어 구매 버튼 추가
 - [x] 제품 상세 페이지 공유하기 버튼 추가 (링크 복사, 카카오톡, X, Facebook, 더보기)
 - [x] 공유 패널 페이드인/아웃 + 슬라이드업/다운 애니메이션 적용
