@@ -67,14 +67,41 @@ export default function ContactSection() {
       return;
     }
     setSubmitting(true);
-    await new Promise((r) => setTimeout(r, 1200));
-    setSubmitting(false);
-    toast.success(
-      lang === 'ko'
-        ? '문의가 접수되었습니다. 영업일 기준 2일 이내에 답변드리겠습니다.'
-        : 'Your inquiry has been received. We will respond within 2 business days.'
-    );
-    setForm({ name: '', email: '', type: '', message: '' });
+
+    try {
+      const response = await fetch('https://formspree.io/f/xpwqndoa', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          type: form.type,
+          message: form.message,
+          _subject: `[BUMI LAB 문의] ${form.name}님의 문의입니다.`
+        })
+      });
+
+      if (response.ok) {
+        toast.success(
+          lang === 'ko'
+            ? '문의가 성공적으로 전송되었습니다. 곧 연락드리겠습니다.'
+            : 'Your inquiry has been sent successfully. We will contact you soon.'
+        );
+        setForm({ name: '', email: '', type: '', message: '' });
+      } else {
+        throw new Error('Failed to send');
+      }
+    } catch (error) {
+      toast.error(
+        lang === 'ko'
+          ? '전송에 실패했습니다. 잠시 후 다시 시도해 주세요.'
+          : 'Failed to send. Please try again later.'
+      );
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const inquiryTypes = [
@@ -86,10 +113,11 @@ export default function ContactSection() {
   ];
 
   const contactDetails = [
-    { label: 'Email', value: 'hello@bumilab.com' },
+    { label: 'Email', value: 'algonany@naver.com' },
+    { label: 'TEL', value: '+82 1065579600' },
     {
       label: lang === 'ko' ? '사업자' : 'Business',
-      value: lang === 'ko' ? '유니즈랩 / Unislab' : 'Unislab Co., Ltd.',
+      value: lang === 'ko' ? '부미랩 / BUMI LAB' : 'Unislab Co., Ltd.',
     },
     {
       label: lang === 'ko' ? '운영 시간' : 'Hours',
