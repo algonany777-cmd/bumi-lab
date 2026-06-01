@@ -65,21 +65,6 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Contact */}
-          <div className="md:col-span-3 md:col-start-10">
-            <div className="font-mono-lab text-[10px] tracking-widest text-[#6B8F71] uppercase mb-4">
-              {lang === 'ko' ? '연락처' : 'Contact'}
-            </div>
-            <div className="space-y-2.5">
-              <div className="font-body text-sm text-[#1C1C1A]/55">hello@bumilab.com</div>
-              <div className="font-body text-sm text-[#1C1C1A]/55">
-                {lang === 'ko' ? '유니즈랩 (Unislab)' : 'Unislab Co., Ltd.'}
-              </div>
-              <div className="font-body text-xs text-[#1C1C1A]/40">
-                {lang === 'ko' ? '월–금 09:00–18:00 KST' : 'Mon–Fri 09:00–18:00 KST'}
-              </div>
-            </div>
-          </div>
         </div>
 
         {/* Bottom bar */}
