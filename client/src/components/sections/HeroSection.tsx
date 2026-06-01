@@ -89,7 +89,12 @@ export default function HeroSection() {
             style={{ transitionDelay: '400ms' }}
           >
             {lang === 'ko'
-              ? '해양 스피큘의 미세 침투 원리로 피부 본연의 재생 리듬을 깨웁니다. 99.8% 고순도 스피큘, 23단계 정제 공정.'
+              ? (
+                <>
+                  해양 스피큘의 미세 침투 원리로 피부 본연의 재생 리듬을 깨웁니다.<br />
+                  99.8% 고순도 스피큘, 23단계 정제 공정.
+                </>
+              )
               : "Marine spicule micro-penetration awakens your skin's natural regeneration rhythm. 99.8% pure spicule, 23-step purification process."}
           </p>
 
