@@ -254,7 +254,7 @@ export default function BrandSection() {
           <div className="w-px h-10 bg-[#0D3D2E]/15 hidden md:block mx-8" />
           <p className="font-body text-sm text-[#1C1C1A]/55 leading-relaxed max-w-xl">
             {lang === 'ko'
-              ? '유니즈랩(Unislab)은 해양 스피큘 원료 연구 및 양식 기술을 보유한 바이오테크 기업입니다. 부미랩은 유니즈랩의 응용 제품 브랜드로, 검증된 스피큘 기술을 소비자에게 직접 전달합니다.'
+              ? <>유니즈랩(Unislab)은 해양 스피큘 원료 연구 및 양식 기술을 보유한 바이오테크 기업입니다.<br />부미랩은 유니즈랩의 응용 제품 브랜드로, 검증된 스피큘 기술을 소비자에게 직접 전달합니다.</> 
               : "Unislab is a biotech company specializing in marine spicule raw material research and cultivation technology. BUMI LAB is Unislab's consumer brand, delivering validated spicule technology directly to consumers."}
           </p>
         </div>
