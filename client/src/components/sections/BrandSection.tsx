@@ -131,7 +131,7 @@ export default function BrandSection() {
             <p className="font-body text-base md:text-lg text-[#1C1C1A]/65 leading-relaxed max-w-lg mb-10">
               {lang === 'ko'
                 ? <>
-                    부미랩은 유니즈랩의 독자적인 해양 스피큘 기술을 바탕으로 탄생한 K-뷰티 스킨케어 브랜드입니다.<br />
+                    부미랩은 유니즈랩의 독자적인 해양 스피큘 기술을 바탕으로 탄생한 K-뷰티 스킨케어 브랜드입니다.<br /><br />
                     깊은 바다의 해면동물에서 추출한 스피큘의 미세 침투 원리를 피부 케어에 적용하여, 피부 본연의 재생 능력을 과학적으로 활성화합니다.
                   </>
                 : "BUMI LAB is a K-beauty skincare brand born from Unislab's proprietary marine spicule technology. By applying the micro-penetration principle of spicules extracted from deep-sea sponges, we scientifically activate the skin's natural regeneration capabilities."}
