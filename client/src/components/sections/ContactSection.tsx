@@ -114,14 +114,6 @@ export default function ContactSection() {
   const contactDetails = [
     { label: 'Email', value: 'algonany@naver.com' },
     { label: 'TEL', value: '+82 1065579600' },
-    {
-      label: lang === 'ko' ? '사업자' : 'Business',
-      value: lang === 'ko' ? '부미랩 / BUMI LAB' : 'Unislab Co., Ltd.',
-    },
-    {
-      label: lang === 'ko' ? '운영 시간' : 'Hours',
-      value: lang === 'ko' ? '월–금 09:00–18:00 KST' : 'Mon–Fri 09:00–18:00 KST',
-    },
   ];
 
   return (
