@@ -112,7 +112,7 @@ export default function ContactSection() {
   ];
 
   const contactDetails = [
-    { label: 'Email', value: 'algonany@naver.com' },
+    { label: 'Email', value: 'algonany777@gmail.com' },
     { label: 'TEL', value: '+82 1065579600' },
   ];
 
