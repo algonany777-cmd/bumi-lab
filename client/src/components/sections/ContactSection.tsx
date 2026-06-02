@@ -111,10 +111,6 @@ export default function ContactSection() {
     { value: 'other', ko: '기타', en: 'Other' },
   ];
 
-  const contactDetails = [
-    { label: 'Email', value: 'algonany777@gmail.com' },
-    { label: 'TEL', value: '+82 1065579600' },
-  ];
 
   return (
     <section
