@@ -159,17 +159,7 @@ export default function ContactSection() {
               </p>
             </div>
 
-            {/* Contact details */}
-            <div className="space-y-4 mb-10">
-              {contactDetails.map((item) => (
-                <div key={item.label} className="flex gap-4">
-                  <span className="font-mono-lab text-[10px] text-[#A8C5AC] uppercase tracking-widest w-20 shrink-0 mt-0.5">
-                    {item.label}
-                  </span>
-                  <span className="font-body text-sm text-[#F5F2EC]/70">{item.value}</span>
-                </div>
-              ))}
-            </div>
+
 
             {/* Lifestyle image */}
             <div
