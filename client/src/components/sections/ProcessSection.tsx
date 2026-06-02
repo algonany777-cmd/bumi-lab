@@ -8,7 +8,7 @@ import { useRef, useEffect, useState, useCallback } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const PROCESS_IMGS = [
-  'https://d2xsxph8kpxj0f.cloudfront.net/310519663388603264/FfX63THfQipTQqzBdN4z4M/process-01-cultivation-QYEuYGhU3RMoHc8hpwrmMs.webp',
+  'https://files.manuscdn.com/user_upload_by_module/session_file/310519663388603264/OhMibeenHgMAOLKg.png',
   'https://d2xsxph8kpxj0f.cloudfront.net/310519663388603264/FfX63THfQipTQqzBdN4z4M/process-02-extraction-Livu7T9q4LR8aJdvma7inv.webp',
   'https://d2xsxph8kpxj0f.cloudfront.net/310519663388603264/FfX63THfQipTQqzBdN4z4M/process-03-purification-dmX5WND2Yz74i5uWoRauM2.webp',
   'https://d2xsxph8kpxj0f.cloudfront.net/310519663388603264/FfX63THfQipTQqzBdN4z4M/process-04-classification-4ytLjpjymTty37QbBKwyT4.webp',

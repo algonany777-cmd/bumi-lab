@@ -9,13 +9,13 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
 
 const BRAND_OCEAN_IMG =
-  'https://d2xsxph8kpxj0f.cloudfront.net/310519663388603264/FfX63THfQipTQqzBdN4z4M/bumi-brand-ocean-Zw3ncf7Sb8ug9nHZ9nYpmq.webp';
+  'https://files.manuscdn.com/user_upload_by_module/session_file/310519663388603264/OhMibeenHgMAOLKg.png';
 
 const BRAND_SCIENCE_IMG =
   'https://d2xsxph8kpxj0f.cloudfront.net/310519663388603264/FfX63THfQipTQqzBdN4z4M/brand-science-aQRUbekk4hdNMg3k7nrsnw.webp';
 
 const BRAND_SUSTAINABLE_IMG =
-  'https://d2xsxph8kpxj0f.cloudfront.net/310519663388603264/FfX63THfQipTQqzBdN4z4M/brand-sustainable-aTLjJm9NPLKmWYqYWYp5oS.webp';
+  'https://files.manuscdn.com/user_upload_by_module/session_file/310519663388603264/CIIuYndcUvZMHMsD.png';
 
 const BRAND_KBEAUTY_IMG =
   'https://d2xsxph8kpxj0f.cloudfront.net/310519663388603264/FfX63THfQipTQqzBdN4z4M/brand-kbeauty-e89KH2G54NXrdF6RdmjM9p.webp';
