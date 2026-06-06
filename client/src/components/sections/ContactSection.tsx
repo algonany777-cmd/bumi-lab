@@ -143,6 +143,32 @@ export default function ContactSection() {
                 : 'We welcome inquiries about products, distribution, partnerships, and various collaborations. BUMI LAB is planning to expand into comprehensive distribution channels.'}
             </p>
 
+            {/* Contact details */}
+            <div className="mb-8 space-y-2">
+              <div className="font-mono-lab text-[10px] tracking-widest text-[#A8C5AC] uppercase mb-3">
+                {lang === 'ko' ? '연락처' : 'Contact Info'}
+              </div>
+              <p className="font-body text-sm text-[#F5F2EC]/70">
+                {lang === 'ko' ? '상호' : 'Business'}: 부미랩 (Bumi Lab)
+              </p>
+              <p>
+                <a
+                  href="mailto:algonany777@gmail.com"
+                  className="font-body text-sm text-[#A8C5AC] hover:text-[#F5F2EC] transition-colors duration-200"
+                >
+                  algonany777@gmail.com
+                </a>
+              </p>
+              <p>
+                <a
+                  href="tel:01065579600"
+                  className="font-body text-sm text-[#A8C5AC] hover:text-[#F5F2EC] transition-colors duration-200"
+                >
+                  010-6557-9600
+                </a>
+              </p>
+            </div>
+
             {/* Distribution expansion note */}
             <div className="border border-[#A8C5AC]/30 p-5 mb-8">
               <div className="font-mono-lab text-[10px] tracking-widest text-[#A8C5AC] uppercase mb-3">

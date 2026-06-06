@@ -74,17 +74,17 @@ export interface ProductData {
 
 const IMGS = {
   // spot-cream: 주사기형 단품 (ACU-SHOT Spot Care Cream 라벨)
-  spot: '/manus-storage/auin-spot-cream_021afe87.png',
+  spot: '/manus-storage/product-spot_c0100cd4.png',
   // mild-daily: 펌프형 크림 단품 (Mild Daily Cream)
-  mild: '/manus-storage/auin-mild-cream_686dd894.png',
-  // ha-ampoule: 바이알+캡 세트 (녹색/흰색 알약 포함 — HA 앰플 형태)
-  ha: '/manus-storage/auin-vial-set_a8979d98.jpg',
-  // vita-c: 드로퍼+바이알 세트 (비타민C 파우더 앰플 형태)
-  vitac: '/manus-storage/auin-ha-set_97515706.png',
+  mild: '/manus-storage/product-daily_d137460e.png',
+  // ha-ampoule: 바이알+캡 세트 (HA 앰플 형태)
+  ha: '/manus-storage/product-ha-ampoule_cd070aa4.jpg',
+  // vita-c: 비타민C 파우더 앰플 세트
+  vitac: '/manus-storage/product-vitamin_5da3901f.png',
   // all-in-one: 주사기×6 세트
-  allinone: '/manus-storage/auin-syringe-set_ffd7983c.png',
-  // brightening-set: 주사기+앰플 혼합 세트
-  brightening: '/manus-storage/auin-brightening-set_eee5e8f3.png',
+  allinone: '/manus-storage/product-allinone_31a8b476.png',
+  // brightening-set: 브라이트닝 세트
+  brightening: '/manus-storage/product-brightening_26cf5a09.png',
 };
 
 export const PRODUCTS: ProductData[] = [

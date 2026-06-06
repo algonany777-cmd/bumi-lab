@@ -46,8 +46,36 @@ export default function Footer() {
             </p>
           </div>
 
+          {/* Contact info */}
+          <div className="md:col-span-4 md:col-start-5">
+            <div className="font-mono-lab text-[10px] tracking-widest text-[#6B8F71] uppercase mb-4">
+              {lang === 'ko' ? '연락처' : 'Contact'}
+            </div>
+            <ul className="space-y-2">
+              <li className="font-body text-sm text-[#1C1C1A]/55">
+                {lang === 'ko' ? '상호' : 'Business'}: 부미랩 (Bumi Lab)
+              </li>
+              <li>
+                <a
+                  href="mailto:algonany777@gmail.com"
+                  className="font-body text-sm text-[#1C1C1A]/55 hover:text-[#0D3D2E] transition-colors duration-200"
+                >
+                  algonany777@gmail.com
+                </a>
+              </li>
+              <li>
+                <a
+                  href="tel:01065579600"
+                  className="font-body text-sm text-[#1C1C1A]/55 hover:text-[#0D3D2E] transition-colors duration-200"
+                >
+                  010-6557-9600
+                </a>
+              </li>
+            </ul>
+          </div>
+
           {/* Nav links */}
-          <div className="md:col-span-3 md:col-start-6">
+          <div className="md:col-span-3 md:col-start-9">
             <div className="font-mono-lab text-[10px] tracking-widest text-[#6B8F71] uppercase mb-4">
               {lang === 'ko' ? '메뉴' : 'Navigation'}
             </div>
