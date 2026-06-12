@@ -1,31 +1,773 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ko">
-  <head>
-<!-- Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-1MCB59JCL0"></script>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BUMI LAB — 좋은 제품, 저희가 팔아드립니다</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Noto+Sans+KR:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --blk: #141414;
+  --cream: #F7F4EF;
+  --wht: #FCFAF7;
+  --forest: #243C2F;
+  --forest2: #1A2E23;
+  --rose: #B89385;
+  --slate: #6B7F8F;
+  --gray: #888;
+  --light: #E6E2DC;
+  --mid: #A89F95;
+  --gold: #C4A96A;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--wht);color:var(--blk);font-family:'Noto Sans KR','Inter',sans-serif;font-weight:300;overflow-x:hidden;}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:18px 60px;
+  background:rgba(252,250,247,0.92);backdrop-filter:blur(16px);
+  transition:box-shadow .3s;
+}
+nav.sc{box-shadow:0 1px 0 var(--light);}
+.logo{font-family:'Cormorant Garamond',serif;font-size:21px;font-weight:500;letter-spacing:.14em;color:var(--blk);text-decoration:none;}
+.nav-ul{display:flex;gap:40px;list-style:none;}
+.nav-ul a{font-size:11px;letter-spacing:.1em;color:var(--gray);text-decoration:none;transition:color .2s;}
+.nav-ul a:hover{color:var(--blk);}
+.nav-r{display:flex;align-items:center;gap:18px;}
+.lang-btn{font-size:11px;letter-spacing:.1em;cursor:pointer;background:none;border:1px solid var(--light);padding:5px 14px;border-radius:20px;color:var(--gray);transition:all .2s;}
+.lang-btn:hover{border-color:var(--blk);color:var(--blk);}
+.nav-cta{font-size:11px;letter-spacing:.1em;background:var(--forest);color:var(--cream);padding:9px 22px;border-radius:2px;text-decoration:none;transition:background .2s;}
+.nav-cta:hover{background:var(--blk);}
+
+/* ── BUTTONS ── */
+.btn-dark{background:var(--blk);color:var(--cream);padding:14px 32px;font-size:12px;letter-spacing:.1em;text-decoration:none;border-radius:2px;display:inline-block;transition:background .2s;}
+.btn-dark:hover{background:var(--forest);}
+.btn-forest{background:var(--forest);color:var(--cream);padding:14px 32px;font-size:12px;letter-spacing:.1em;text-decoration:none;border-radius:2px;display:inline-block;transition:background .2s;}
+.btn-forest:hover{background:var(--blk);}
+.btn-outline{border:1px solid var(--mid);color:var(--blk);padding:14px 32px;font-size:12px;letter-spacing:.1em;text-decoration:none;border-radius:2px;display:inline-block;transition:all .2s;}
+.btn-outline:hover{border-color:var(--blk);}
+.btn-wht{background:var(--cream);color:var(--blk);padding:14px 32px;font-size:12px;letter-spacing:.1em;text-decoration:none;border-radius:2px;display:inline-block;transition:background .2s;}
+.btn-wht:hover{background:#fff;}
+
+/* ── EYEBROW ── */
+.eyebrow{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--rose);display:flex;align-items:center;gap:12px;margin-bottom:24px;}
+.eyebrow::before{content:'';display:block;width:24px;height:1px;background:var(--rose);}
+.eyebrow-wht{color:rgba(247,244,239,.5);}
+.eyebrow-wht::before{background:rgba(247,244,239,.4);}
+
+/* ── HEADINGS ── */
+.h1{font-family:'Cormorant Garamond',serif;font-size:clamp(56px,6vw,92px);font-weight:300;line-height:1.02;letter-spacing:-.01em;}
+.h2{font-family:'Cormorant Garamond',serif;font-size:clamp(36px,3.8vw,60px);font-weight:300;line-height:1.08;}
+.h2 em,.h1 em{font-style:italic;color:var(--rose);}
+.h2-wht{color:var(--cream);}
+.body-txt{font-size:14px;line-height:1.9;color:var(--gray);}
+.body-wht{color:rgba(247,244,239,.65);}
+
+/* ── SECTION PADDING ── */
+.sec{padding:110px 60px;}
+.sec-sm{padding:80px 60px;}
+
+/* ═══════════════════════════════════
+   SECTION 1 — HERO
+═══════════════════════════════════ */
+.hero{
+  min-height:100vh;
+  display:grid;grid-template-columns:1fr 1fr;
+  padding-top:80px;overflow:hidden;
+}
+.hero-l{
+  display:flex;flex-direction:column;justify-content:center;
+  padding:80px 64px 80px 60px;
+  background:var(--wht);position:relative;z-index:2;
+}
+.hero-tag{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:10px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--forest);border:1px solid var(--forest);
+  padding:6px 14px;border-radius:2px;
+  margin-bottom:32px;width:fit-content;
+}
+.hero-tag span{width:6px;height:6px;background:var(--forest);border-radius:50%;animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.3;}}
+.hero-body{font-size:14px;line-height:1.9;color:var(--gray);max-width:400px;margin:28px 0 48px;}
+.hero-btns{display:flex;gap:16px;align-items:center;margin-bottom:60px;}
+.hero-trust{display:flex;gap:32px;}
+.trust-item{display:flex;flex-direction:column;}
+.trust-num{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:400;color:var(--blk);line-height:1;}
+.trust-num em{font-style:italic;color:var(--rose);font-size:20px;}
+.trust-label{font-size:10px;letter-spacing:.1em;color:var(--gray);margin-top:4px;}
+
+.hero-r{position:relative;overflow:hidden;background:var(--cream);}
+.hero-r img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;}
+.hero-r-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to right, rgba(252,250,247,.15) 0%, transparent 40%);
+}
+.hero-badge{
+  position:absolute;bottom:40px;right:40px;
+  background:rgba(20,20,20,.85);backdrop-filter:blur(8px);
+  padding:20px 24px;color:var(--cream);
+}
+.badge-num{font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:300;line-height:1;}
+.badge-num em{font-style:italic;color:var(--rose);}
+.badge-txt{font-size:10px;letter-spacing:.1em;color:rgba(247,244,239,.55);margin-top:4px;}
+
+/* ═══════════════════════════════════
+   TICKER
+═══════════════════════════════════ */
+.ticker{background:var(--forest);padding:14px 0;overflow:hidden;white-space:nowrap;}
+.ticker-inner{display:inline-flex;animation:ticker 32s linear infinite;}
+.ticker-item{font-family:'Cormorant Garamond',serif;font-size:14px;letter-spacing:.15em;color:rgba(247,244,239,.7);padding:0 52px;}
+.ticker-item em{font-style:italic;color:var(--rose);}
+@keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* ═══════════════════════════════════
+   SECTION 2 — PAIN POINT
+═══════════════════════════════════ */
+.pain{
+  background:var(--blk);
+  display:grid;grid-template-columns:1fr 1fr;gap:0;padding:0;
+}
+.pain-img{position:relative;min-height:640px;overflow:hidden;}
+.pain-img img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;opacity:.6;filter:grayscale(20%);}
+.pain-img-overlay{position:absolute;inset:0;background:linear-gradient(to right,transparent 60%,var(--blk));}
+.pain-content{padding:110px 60px;display:flex;flex-direction:column;justify-content:center;}
+.pain-title{font-family:'Cormorant Garamond',serif;font-size:clamp(32px,3vw,52px);font-weight:300;color:var(--cream);line-height:1.1;margin-bottom:20px;}
+.pain-title em{font-style:italic;color:var(--rose);}
+.pain-sub{font-size:14px;color:rgba(247,244,239,.55);line-height:1.8;margin-bottom:48px;max-width:380px;}
+.pain-list{display:flex;flex-direction:column;gap:0;}
+.pain-item{
+  display:grid;grid-template-columns:48px 1fr;
+  padding:24px 0;border-top:1px solid rgba(255,255,255,.08);
+  align-items:start;gap:20px;
+}
+.pain-item:last-child{border-bottom:1px solid rgba(255,255,255,.08);}
+.pain-icon{font-family:'Cormorant Garamond',serif;font-size:36px;color:var(--rose);font-weight:300;line-height:1;}
+.pain-item-title{font-size:14px;font-weight:500;color:var(--cream);margin-bottom:6px;letter-spacing:.03em;}
+.pain-item-desc{font-size:12px;color:rgba(247,244,239,.5);line-height:1.75;}
+
+/* ═══════════════════════════════════
+   SECTION 3 — SERVICES
+═══════════════════════════════════ */
+.services{background:var(--cream);}
+.services-header{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:end;margin-bottom:64px;}
+.services-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;}
+.svc-card{background:var(--wht);padding:44px 36px;position:relative;overflow:hidden;}
+.svc-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--forest);transform:scaleX(0);transform-origin:left;transition:transform .3s;}
+.svc-card:hover::before{transform:scaleX(1);}
+.svc-num{font-family:'Cormorant Garamond',serif;font-size:48px;font-weight:300;color:var(--light);line-height:1;margin-bottom:20px;}
+.svc-icon{font-size:28px;margin-bottom:20px;display:block;}
+.svc-title{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:400;margin-bottom:14px;line-height:1.2;color:var(--blk);}
+.svc-desc{font-size:12px;color:var(--gray);line-height:1.8;}
+.svc-tag{display:inline-block;font-size:9px;letter-spacing:.15em;text-transform:uppercase;background:var(--forest);color:var(--cream);padding:4px 10px;border-radius:2px;margin-top:20px;}
+
+.services-mockup{margin-top:48px;position:relative;overflow:hidden;border-radius:4px;height:360px;}
+.services-mockup img{width:100%;height:100%;object-fit:cover;}
+
+/* ═══════════════════════════════════
+   SECTION 4 — HOW IT WORKS
+═══════════════════════════════════ */
+.how{background:var(--forest2);}
+.how-header{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:end;margin-bottom:60px;}
+.how-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin-bottom:60px;}
+.step{background:rgba(255,255,255,.05);padding:40px 32px;position:relative;}
+.step-arrow{
+  position:absolute;right:-1px;top:50%;transform:translateY(-50%);
+  width:0;height:0;
+  border-top:8px solid transparent;
+  border-bottom:8px solid transparent;
+  border-left:10px solid var(--rose);
+  z-index:2;
+}
+.step:last-child .step-arrow{display:none;}
+.step-n{font-family:'Cormorant Garamond',serif;font-size:52px;font-weight:300;color:rgba(255,255,255,.08);line-height:1;margin-bottom:12px;}
+.step-title{font-size:13px;font-weight:500;color:var(--cream);margin-bottom:10px;letter-spacing:.05em;}
+.step-desc{font-size:12px;color:rgba(247,244,239,.45);line-height:1.75;}
+.step-icon{font-size:24px;margin-bottom:16px;display:block;}
+
+.how-video{position:relative;overflow:hidden;border-radius:2px;background:var(--blk);width:70%;margin:0 auto;}
+.how-video-wrap{padding-top:56.25%;position:relative;}
+.how-video-wrap video,.how-video-wrap iframe{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+
+/* ═══════════════════════════════════
+   SECTION 5 — CHANNEL POWER
+═══════════════════════════════════ */
+.channels{background:var(--wht);}
+.channels-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;margin-top:60px;}
+.channel-img{position:relative;overflow:hidden;}
+.channel-img img{width:100%;display:block;}
+.channel-cats{display:flex;flex-direction:column;gap:24px;}
+.channel-cat h4{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--rose);margin-bottom:12px;}
+.channel-tags{display:flex;flex-wrap:wrap;gap:8px;}
+.ch-tag{
+  font-size:11px;letter-spacing:.06em;
+  padding:8px 16px;border:1px solid var(--light);border-radius:2px;
+  color:var(--gray);transition:all .2s;cursor:default;
+}
+.ch-tag:hover{border-color:var(--forest);color:var(--forest);}
+.ch-tag.live{border-color:var(--forest);color:var(--forest);background:rgba(36,60,47,.05);}
+.channel-note{margin-top:36px;padding:20px 24px;background:var(--cream);border-left:3px solid var(--forest);}
+.channel-note p{font-size:13px;color:var(--gray);line-height:1.75;}
+.channel-note strong{color:var(--blk);font-weight:500;}
+
+/* ═══════════════════════════════════
+   SECTION 6 — PORTFOLIO
+═══════════════════════════════════ */
+.portfolio{background:var(--blk);padding:0;}
+.portfolio-header{padding:80px 60px 60px;}
+.portfolio-label{color:var(--rose);}
+.portfolio-label::before{background:var(--rose);}
+.portfolio-h{color:var(--cream);margin-bottom:20px;}
+.portfolio-sub{color:rgba(247,244,239,.55);font-size:14px;line-height:1.9;max-width:500px;}
+
+.portfolio-showcase{display:grid;grid-template-columns:1fr 1fr;gap:2px;}
+.pf-main{position:relative;overflow:hidden;min-height:560px;}
+.pf-main img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;transition:transform .6s ease;}
+.pf-main:hover img{transform:scale(1.03);}
+.pf-main-info{
+  position:absolute;bottom:0;left:0;right:0;
+  padding:40px;
+  background:linear-gradient(to top,rgba(14,14,14,.9) 0%,transparent 100%);
+}
+.pf-main-tag{font-size:9px;letter-spacing:.18em;text-transform:uppercase;background:var(--rose);color:#fff;padding:4px 10px;border-radius:2px;display:inline-block;margin-bottom:12px;}
+.pf-main-title{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:300;color:var(--cream);margin-bottom:8px;}
+.pf-main-desc{font-size:12px;color:rgba(247,244,239,.6);line-height:1.7;}
+
+.pf-aside{display:grid;grid-template-rows:1fr 1fr 1fr;gap:2px;}
+.pf-card{position:relative;overflow:hidden;background:var(--forest2);padding:32px;display:flex;flex-direction:column;justify-content:flex-end;}
+.pf-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.4;transition:opacity .3s;}
+.pf-card:hover img{opacity:.55;}
+.pf-card-content{position:relative;z-index:2;}
+.pf-card-label{font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--rose);margin-bottom:8px;}
+.pf-card-title{font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--cream);font-weight:300;}
+
+.portfolio-cta{padding:48px 60px;display:flex;justify-content:space-between;align-items:center;gap:40px;border-top:1px solid rgba(255,255,255,.06);}
+.portfolio-cta p{font-size:13px;color:rgba(247,244,239,.45);}
+.portfolio-cta p strong{color:var(--cream);font-weight:400;}
+
+/* ═══════════════════════════════════
+   SECTION 7 — PRICING
+═══════════════════════════════════ */
+.pricing{background:var(--cream);}
+.pricing-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;margin-top:60px;}
+.price-table{display:flex;flex-direction:column;gap:0;}
+.price-row{
+  display:grid;grid-template-columns:1fr auto;
+  padding:20px 0;border-bottom:1px solid var(--light);
+  align-items:center;gap:20px;
+}
+.price-row:first-child{border-top:1px solid var(--light);}
+.price-name{font-size:14px;color:var(--blk);}
+.price-name span{display:block;font-size:11px;color:var(--gray);margin-top:3px;}
+.price-val{font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--forest);font-weight:400;white-space:nowrap;}
+.pricing-notes{display:flex;flex-direction:column;gap:20px;}
+.p-note{padding:24px;background:var(--wht);}
+.p-note-title{font-size:12px;font-weight:500;color:var(--blk);margin-bottom:8px;letter-spacing:.05em;}
+.p-note-body{font-size:12px;color:var(--gray);line-height:1.75;}
+.pricing-img{margin-top:48px;position:relative;overflow:hidden;height:280px;border-radius:2px;}
+.pricing-img img{width:100%;height:100%;object-fit:cover;}
+
+/* ═══════════════════════════════════
+   SECTION 8 — PARTNER CTA
+═══════════════════════════════════ */
+.partner-cta{
+  position:relative;overflow:hidden;
+  min-height:600px;display:flex;align-items:center;justify-content:center;
+  text-align:center;
+}
+.partner-cta-bg{position:absolute;inset:0;}
+.partner-cta-bg img{width:100%;height:100%;object-fit:cover;filter:brightness(.25);}
+.partner-cta-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(26,46,35,.9),rgba(14,14,14,.95));}
+.partner-cta-content{position:relative;z-index:2;max-width:700px;padding:80px 40px;}
+.cta-eyebrow{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--rose);margin-bottom:24px;display:flex;align-items:center;justify-content:center;gap:12px;}
+.cta-eyebrow::before,.cta-eyebrow::after{content:'';display:block;width:24px;height:1px;background:var(--rose);}
+.cta-h{font-family:'Cormorant Garamond',serif;font-size:clamp(36px,4vw,64px);font-weight:300;color:var(--cream);line-height:1.08;margin-bottom:20px;}
+.cta-h em{font-style:italic;color:var(--rose);}
+.cta-body{font-size:14px;color:rgba(247,244,239,.6);line-height:1.9;margin-bottom:48px;}
+.cta-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;}
+
+/* ═══════════════════════════════════
+   FOOTER
+═══════════════════════════════════ */
+footer{background:var(--blk);color:var(--cream);padding:72px 60px 40px;}
+.ft-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:56px;}
+.ft-logo{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:500;letter-spacing:.14em;color:var(--cream);text-decoration:none;display:block;margin-bottom:14px;}
+.ft-tagline{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:14px;color:var(--rose);margin-bottom:14px;}
+.ft-desc{font-size:12px;color:rgba(247,244,239,.4);line-height:1.8;max-width:260px;}
+.ft-col h4{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:rgba(247,244,239,.3);margin-bottom:20px;font-weight:400;}
+.ft-col ul{list-style:none;display:flex;flex-direction:column;gap:12px;}
+.ft-col a{font-size:13px;color:rgba(247,244,239,.55);text-decoration:none;transition:color .2s;}
+.ft-col a:hover{color:var(--cream);}
+.ft-bottom{border-top:1px solid rgba(255,255,255,.07);padding-top:28px;font-size:11px;color:rgba(247,244,239,.3);}
+
+/* ── REVEAL ── */
+.rv{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease;}
+.rv.in{opacity:1;transform:translateY(0);}
+
+/* ── MOBILE ── */
+@media(max-width:768px){
+  nav{padding:16px 24px;}
+  .nav-ul{display:none;}
+  .hero{grid-template-columns:1fr;}
+  .hero-l{padding:60px 24px 48px;}
+  .hero-r{min-height:65vw;}
+  .sec,.sec-sm{padding:64px 24px;}
+  .pain{grid-template-columns:1fr;}
+  .pain-img{min-height:280px;}
+  .pain-content{padding:64px 24px;}
+  .services-header{grid-template-columns:1fr;gap:32px;}
+  .services-grid{grid-template-columns:1fr 1fr;}
+  .how-header{grid-template-columns:1fr;gap:32px;}
+  .how-steps{grid-template-columns:1fr 1fr;}
+  .channels-grid{grid-template-columns:1fr;}
+  .portfolio-showcase{grid-template-columns:1fr;}
+  .pf-aside{grid-template-rows:auto;grid-template-columns:1fr 1fr 1fr;}
+  .pf-main{min-height:360px;}
+  .pricing-grid{grid-template-columns:1fr;}
+  .portfolio-cta{flex-direction:column;text-align:center;padding:40px 24px;}
+  .ft-top{grid-template-columns:1fr 1fr;}
+  .hero-trust{gap:20px;}
+  .step-arrow{display:none;}
+}
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav id="nav">
+  <a href="#" class="logo">BUMI LAB</a>
+  <ul class="nav-ul">
+    <li><a href="#pain" data-ko="제조사 고민" data-en="For Makers">제조사 고민</a></li>
+    <li><a href="#services" data-ko="서비스" data-en="Services">서비스</a></li>
+    <li><a href="#how" data-ko="진행 방식" data-en="How It Works">진행 방식</a></li>
+    <li><a href="#portfolio" data-ko="포트폴리오" data-en="Portfolio">포트폴리오</a></li>
+  </ul>
+  <div class="nav-r">
+    <button class="lang-btn" onclick="toggleLang()" id="langBtn">EN</button>
+    <a href="mailto:algonany@naver.com" class="nav-cta" data-ko="파트너십 문의" data-en="Contact Us">파트너십 문의</a>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════
+     SECTION 1 — HERO
+═══════════════════════════════════ -->
+<section class="hero" id="hero">
+  <div class="hero-l">
+    <div class="hero-tag">
+      <span></span>
+      <span data-ko="제조사 파트너 모집 중" data-en="Now Recruiting Manufacturing Partners">제조사 파트너 모집 중</span>
+    </div>
+    <p class="eyebrow" data-ko="유통의 새로운 패러다임" data-en="A New Distribution Paradigm">유통의 새로운 패러다임</p>
+    <h1 class="h1 rv" data-ko="좋은 제품,<br>저희가<br><em>팔아드립니다</em>" data-en="Great Products.<br>We'll Sell<br><em>Them For You</em>">좋은 제품,<br>저희가<br><em>팔아드립니다</em></h1>
+    <p class="hero-body rv" data-ko="웹페이지·상세페이지·SNS 제작부터 네이버·쿠팡·인스타 다채널 유통까지. 제조사는 제품 만드는 일에만 집중하세요. 나머지는 저희가 합니다." data-en="From website and detail page creation to multi-channel distribution on Naver, Coupang, and Instagram — manufacturers focus on making. We handle everything else.">웹페이지·상세페이지·SNS 제작부터 네이버·쿠팡·인스타 다채널 유통까지. 제조사는 제품 만드는 일에만 집중하세요. 나머지는 저희가 합니다.</p>
+    <div class="hero-btns rv">
+      <a href="mailto:algonany@naver.com" class="btn-forest" data-ko="파트너십 문의하기" data-en="Get in Touch">파트너십 문의하기</a>
+      <a href="#services" class="btn-outline" data-ko="서비스 보기" data-en="Our Services">서비스 보기</a>
+    </div>
+    <div class="hero-trust rv">
+      <div class="trust-item">
+        <span class="trust-num">4<em>가지</em></span>
+        <span class="trust-label" data-ko="핵심 서비스" data-en="Core Services">핵심 서비스</span>
+      </div>
+      <div class="trust-item">
+        <span class="trust-num">1<em>만</em></span>
+        <span class="trust-label" data-ko="첫 시즌 유통 실적" data-en="First Season Volume">첫 시즌 유통 실적</span>
+      </div>
+      <div class="trust-item">
+        <span class="trust-num">5<em>+</em></span>
+        <span class="trust-label" data-ko="연결 유통 채널" data-en="Distribution Channels">연결 유통 채널</span>
+      </div>
+    </div>
+  </div>
+  <div class="hero-r">
+    <img src="https://drive.google.com/thumbnail?id=1_-AM8c8b96AGlzRXTyoqTII7jxOj_O97&sz=w900" alt="BUMI LAB">
+    <div class="hero-r-overlay"></div>
+    <div class="hero-badge">
+      <div class="badge-num">2025<em>년</em></div>
+      <div class="badge-txt" data-ko="유통 패러다임 전환 시작" data-en="Distribution Paradigm Shift">유통 패러다임 전환 시작</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TICKER ── -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <span class="ticker-item">유통의 <em>새로운 패러다임</em></span>
+    <span class="ticker-item">제조사 직결 유통</span>
+    <span class="ticker-item">콘텐츠 제작 · 채널 연결 · 판매 대행</span>
+    <span class="ticker-item">BUMI LAB</span>
+    <span class="ticker-item"><em>A New Distribution Paradigm</em></span>
+    <span class="ticker-item">Direct from Maker to Consumer</span>
+    <span class="ticker-item">유통의 <em>새로운 패러다임</em></span>
+    <span class="ticker-item">제조사 직결 유통</span>
+    <span class="ticker-item">콘텐츠 제작 · 채널 연결 · 판매 대행</span>
+    <span class="ticker-item">BUMI LAB</span>
+    <span class="ticker-item"><em>A New Distribution Paradigm</em></span>
+    <span class="ticker-item">Direct from Maker to Consumer</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     SECTION 2 — PAIN POINT
+═══════════════════════════════════ -->
+<div id="pain" class="pain">
+  <div class="pain-img">
+    <img src="https://drive.google.com/thumbnail?id=1Gcqc0xS9xGNZY-xyttYaB2cyDonCM-Ed&sz=w800" alt="창고">
+    <div class="pain-img-overlay"></div>
+  </div>
+  <div class="pain-content">
+    <p class="eyebrow eyebrow-wht" data-ko="제조사의 현실" data-en="The Maker's Reality">제조사의 현실</p>
+    <h2 class="pain-title" data-ko="제품은 좋은데,<br>왜 <em>안 팔릴까요?</em>" data-en="Great product,<br>but why <em>won't it sell?</em>">제품은 좋은데,<br>왜 <em>안 팔릴까요?</em></h2>
+    <p class="pain-sub rv" data-ko="좋은 제품을 만들어도 판매 채널이 없으면 창고에서 잠만 잡니다. 마케팅과 유통은 별도의 전문 영역입니다." data-en="Even great products sleep in a warehouse without distribution channels. Marketing and sales are specialized domains that require dedicated expertise.">좋은 제품을 만들어도 판매 채널이 없으면 창고에서 잠만 잡니다. 마케팅과 유통은 별도의 전문 영역입니다.</p>
+    <div class="pain-list">
+      <div class="pain-item rv">
+        <span class="pain-icon">①</span>
+        <div>
+          <p class="pain-item-title" data-ko="어디서 어떻게 팔아야 할지 모른다" data-en="Don't know where or how to sell">어디서 어떻게 팔아야 할지 모른다</p>
+          <p class="pain-item-desc" data-ko="스마트스토어, 쿠팡, 인스타그램 — 채널마다 다른 전략과 운영 방식이 필요합니다." data-en="Smartstore, Coupang, Instagram — each channel requires a different strategy and operation.">스마트스토어, 쿠팡, 인스타그램 — 채널마다 다른 전략과 운영 방식이 필요합니다.</p>
+        </div>
+      </div>
+      <div class="pain-item rv" style="transition-delay:.1s">
+        <span class="pain-icon">②</span>
+        <div>
+          <p class="pain-item-title" data-ko="마케팅할 시간도 인력도 없다" data-en="No time or staff for marketing">마케팅할 시간도 인력도 없다</p>
+          <p class="pain-item-desc" data-ko="제조에 집중하다 보면 콘텐츠 제작, SNS 운영, 광고 집행을 할 여력이 없습니다." data-en="Focused on manufacturing, there's no capacity left for content creation, SNS management, or ad campaigns.">제조에 집중하다 보면 콘텐츠 제작, SNS 운영, 광고 집행을 할 여력이 없습니다.</p>
+        </div>
+      </div>
+      <div class="pain-item rv" style="transition-delay:.2s">
+        <span class="pain-icon">③</span>
+        <div>
+          <p class="pain-item-title" data-ko="재고만 쌓이고 현금이 묶인다" data-en="Inventory piles up, cash gets tied up">재고만 쌓이고 현금이 묶인다</p>
+          <p class="pain-item-desc" data-ko="판매 채널이 없으면 아무리 좋은 제품도 창고 비용만 발생시킵니다." data-en="Without distribution channels, even the best products only generate storage costs.">판매 채널이 없으면 아무리 좋은 제품도 창고 비용만 발생시킵니다.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     SECTION 3 — SERVICES
+═══════════════════════════════════ -->
+<section class="sec services" id="services">
+  <div class="services-header">
+    <div>
+      <p class="eyebrow" data-ko="BUMI LAB 서비스" data-en="BUMI LAB Services">BUMI LAB 서비스</p>
+      <h2 class="h2 rv" data-ko="저희가<br><em>모두 해드립니다</em>" data-en="We Handle<br><em>Everything</em>">저희가<br><em>모두 해드립니다</em></h2>
+    </div>
+    <p class="body-txt rv" data-ko="웹페이지 제작부터 다채널 유통까지. 제조사는 제품 품질에만 집중하면 됩니다. 마케팅과 유통의 모든 과정을 BUMI LAB이 전담합니다." data-en="From website creation to multi-channel distribution. Manufacturers only need to focus on product quality. BUMI LAB handles every step of marketing and distribution.">웹페이지 제작부터 다채널 유통까지. 제조사는 제품 품질에만 집중하면 됩니다. 마케팅과 유통의 모든 과정을 BUMI LAB이 전담합니다.</p>
+  </div>
+  <div class="services-grid">
+    <div class="svc-card rv">
+      <div class="svc-num">01</div>
+      <h3 class="svc-title" data-ko="웹페이지 제작" data-en="Website Creation">웹페이지 제작</h3>
+      <p class="svc-desc" data-ko="브랜드 정체성에 맞는 웹사이트를 제작합니다. 제품 소개, 브랜드 스토리, 문의 접수까지 완성된 디지털 홈을 만들어드립니다." data-en="We build websites that match your brand identity — product showcase, brand story, and inquiry forms included.">브랜드 정체성에 맞는 웹사이트를 제작합니다. 제품 소개, 브랜드 스토리, 문의 접수까지 완성된 디지털 홈을 만들어드립니다.</p>
+      <span class="svc-tag" data-ko="웹 개발" data-en="Web Dev">웹 개발</span>
+    </div>
+    <div class="svc-card rv" style="transition-delay:.1s">
+      <div class="svc-num">02</div>
+      <h3 class="svc-title" data-ko="상세페이지 제작" data-en="Detail Page Creation">상세페이지 제작</h3>
+      <p class="svc-desc" data-ko="구매 전환을 극대화하는 스마트스토어·쿠팡 상세페이지를 제작합니다. 제품 특성에 맞는 카피와 레이아웃으로 구매율을 높입니다." data-en="We create Smartstore and Coupang detail pages that maximize conversion. Tailored copy and layout to boost purchase rates.">구매 전환을 극대화하는 스마트스토어·쿠팡 상세페이지를 제작합니다. 제품 특성에 맞는 카피와 레이아웃으로 구매율을 높입니다.</p>
+      <span class="svc-tag" data-ko="이커머스" data-en="E-commerce">이커머스</span>
+    </div>
+    <div class="svc-card rv" style="transition-delay:.2s">
+      <div class="svc-num">03</div>
+      <h3 class="svc-title" data-ko="블로그 · SNS 운영" data-en="Blog & SNS Management">블로그 · SNS 운영</h3>
+      <p class="svc-desc" data-ko="검색 유입을 위한 블로그 콘텐츠와 인스타그램 릴스·피드를 운영합니다. 인플루언서 캠페인 기획 및 집행도 함께 합니다." data-en="Blog content for search traffic and Instagram Reels/feed management. Including influencer campaign planning and execution.">검색 유입을 위한 블로그 콘텐츠와 인스타그램 릴스·피드를 운영합니다. 인플루언서 캠페인 기획 및 집행도 함께 합니다.</p>
+      <span class="svc-tag" data-ko="콘텐츠" data-en="Content">콘텐츠</span>
+    </div>
+    <div class="svc-card rv" style="transition-delay:.3s">
+      <div class="svc-num">04</div>
+      <h3 class="svc-title" data-ko="다채널 유통 대행" data-en="Multi-Channel Distribution">다채널 유통 대행</h3>
+      <p class="svc-desc" data-ko="스마트스토어·쿠팡·카카오·자사몰 등 온라인 채널과 팝업·편집숍 오프라인 채널까지 전방위 유통 채널을 연결합니다." data-en="We connect your products across online channels (Smartstore, Coupang, Kakao) and offline channels (pop-up stores, curated shops).">스마트스토어·쿠팡·카카오·자사몰 등 온라인 채널과 팝업·편집숍 오프라인 채널까지 전방위 유통 채널을 연결합니다.</p>
+      <span class="svc-tag" data-ko="유통" data-en="Distribution">유통</span>
+    </div>
+  </div>
+  <div class="services-mockup">
+    <img src="https://drive.google.com/thumbnail?id=1NXcK_T9PHhxxOHIu9Tsu2jxfnfA0NwkF&sz=w1200" alt="BUMI LAB Services">
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════
+     SECTION 4 — HOW IT WORKS
+═══════════════════════════════════ -->
+<section class="sec how" id="how">
+  <div class="how-header">
+    <div>
+      <p class="eyebrow eyebrow-wht" data-ko="진행 방식" data-en="How It Works">진행 방식</p>
+      <h2 class="h2 h2-wht rv" data-ko="의뢰부터 판매까지<br><em>4단계</em>" data-en="From Inquiry<br>to Sales in <em>4 Steps</em>">의뢰부터 판매까지<br><em>4단계</em></h2>
+    </div>
+    <p class="body-txt body-wht rv" data-ko="복잡하지 않습니다. 제조사는 의뢰만 하면 됩니다. 나머지 모든 과정을 BUMI LAB이 책임지고 진행합니다." data-en="It's not complicated. Manufacturers only need to make the inquiry. BUMI LAB takes responsibility for every step after that.">복잡하지 않습니다. 제조사는 의뢰만 하면 됩니다. 나머지 모든 과정을 BUMI LAB이 책임지고 진행합니다.</p>
+  </div>
+  <div class="how-steps">
+    <div class="step rv">
+      <div class="step-arrow"></div>
+      <div class="step-n">01</div>
+      <span class="step-icon">📋</span>
+      <p class="step-title" data-ko="의뢰 접수" data-en="Intake Consultation">의뢰 접수</p>
+      <p class="step-desc" data-ko="제품 정보, 목표 시장, 공급 조건을 공유해주세요. 초기 상담은 무료입니다." data-en="Share product info, target market, and supply terms. Initial consultation is free.">제품 정보, 목표 시장, 공급 조건을 공유해주세요. 초기 상담은 무료입니다.</p>
+    </div>
+    <div class="step rv" style="transition-delay:.1s">
+      <div class="step-arrow"></div>
+      <div class="step-n">02</div>
+      <span class="step-icon">✏️</span>
+      <p class="step-title" data-ko="콘텐츠 제작" data-en="Content Creation">콘텐츠 제작</p>
+      <p class="step-desc" data-ko="웹페이지·상세페이지·SNS 콘텐츠를 제작합니다. 브랜드 아이덴티티부터 카피까지 전담합니다." data-en="We create the website, detail pages, and SNS content — from brand identity to copywriting.">웹페이지·상세페이지·SNS 콘텐츠를 제작합니다. 브랜드 아이덴티티부터 카피까지 전담합니다.</p>
+    </div>
+    <div class="step rv" style="transition-delay:.2s">
+      <div class="step-arrow"></div>
+      <div class="step-n">03</div>
+      <span class="step-icon">🚀</span>
+      <p class="step-title" data-ko="채널 런칭" data-en="Channel Launch">채널 런칭</p>
+      <p class="step-desc" data-ko="스마트스토어·쿠팡·인스타 등 채널에 제품을 올리고 마케팅을 가동합니다." data-en="Products go live on Smartstore, Coupang, Instagram, and more — marketing engine activated.">스마트스토어·쿠팡·인스타 등 채널에 제품을 올리고 마케팅을 가동합니다.</p>
+    </div>
+    <div class="step rv" style="transition-delay:.3s">
+      <div class="step-n">04</div>
+      <span class="step-icon">💰</span>
+      <p class="step-title" data-ko="판매 & 정산" data-en="Sales & Settlement">판매 & 정산</p>
+      <p class="step-desc" data-ko="판매가 발생하면 정기적으로 정산합니다. 데이터 리포트도 함께 제공합니다." data-en="Regular settlements when sales occur, along with detailed performance reports.">판매가 발생하면 정기적으로 정산합니다. 데이터 리포트도 함께 제공합니다.</p>
+    </div>
+  </div>
+  <div class="how-video rv">
+    <div class="how-video-wrap">
+      <iframe src="https://drive.google.com/file/d/164n72zqs2nINmYuNeMVneWgEeuR241UD/preview" allow="autoplay" frameborder="0" allowfullscreen></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════
+     SECTION 5 — CHANNELS
+═══════════════════════════════════ -->
+<section class="sec channels" id="channels">
+  <p class="eyebrow" data-ko="유통 채널" data-en="Distribution Channels">유통 채널</p>
+  <h2 class="h2 rv" data-ko="우리가 연결하는<br><em>유통 채널</em>" data-en="The Channels<br>We <em>Connect</em>">우리가 연결하는<br><em>유통 채널</em></h2>
+  <div class="channels-grid">
+    <div class="channel-img rv">
+      <img src="https://drive.google.com/thumbnail?id=1Mts3xmDu65IGOqK7CwYOwpC0Z8Mg5euU&sz=w800" alt="채널">
+    </div>
+    <div>
+      <div class="channel-cats">
+        <div class="channel-cat">
+          <h4 data-ko="온라인 이커머스" data-en="Online E-commerce">온라인 이커머스</h4>
+          <div class="channel-tags">
+            <span class="ch-tag live" data-ko="네이버 스마트스토어" data-en="Naver Smartstore">네이버 스마트스토어</span>
+            <span class="ch-tag" data-ko="쿠팡" data-en="Coupang">쿠팡</span>
+            <span class="ch-tag" data-ko="카카오쇼핑" data-en="Kakao Shopping">카카오쇼핑</span>
+            <span class="ch-tag" data-ko="자사몰" data-en="Direct Store">자사몰</span>
+          </div>
+        </div>
+        <div class="channel-cat">
+          <h4 data-ko="SNS 유통" data-en="Social Commerce">SNS 유통</h4>
+          <div class="channel-tags">
+            <span class="ch-tag live" data-ko="인스타그램 릴스" data-en="Instagram Reels">인스타그램 릴스</span>
+            <span class="ch-tag" data-ko="유튜브 쇼핑" data-en="YouTube Shopping">유튜브 쇼핑</span>
+            <span class="ch-tag" data-ko="인플루언서 협업" data-en="Influencer Collab">인플루언서 협업</span>
+          </div>
+        </div>
+        <div class="channel-cat">
+          <h4 data-ko="오프라인" data-en="Offline">오프라인</h4>
+          <div class="channel-tags">
+            <span class="ch-tag" data-ko="팝업스토어" data-en="Pop-up Store">팝업스토어</span>
+            <span class="ch-tag" data-ko="편집숍 입점" data-en="Curated Shop">편집숍 입점</span>
+            <span class="ch-tag" data-ko="B2B 도매" data-en="B2B Wholesale">B2B 도매</span>
+          </div>
+        </div>
+      </div>
+      <div class="channel-note rv" style="transition-delay:.2s">
+        <p data-ko="<strong>채널은 저희가 열겠습니다.</strong> 제조사는 어떤 채널에서 판매할지 걱정할 필요가 없습니다. BUMI LAB이 제품에 맞는 최적 채널을 선정하고 가동합니다." data-en="<strong>We'll open the channels.</strong> Manufacturers don't need to worry about which channels to use. BUMI LAB selects and activates the optimal channels for each product."><strong>채널은 저희가 열겠습니다.</strong> 제조사는 어떤 채널에서 판매할지 걱정할 필요가 없습니다. BUMI LAB이 제품에 맞는 최적 채널을 선정하고 가동합니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════
+     SECTION 6 — PORTFOLIO
+═══════════════════════════════════ -->
+<div id="portfolio" class="portfolio">
+  <div class="portfolio-header">
+    <p class="eyebrow portfolio-label" data-ko="포트폴리오" data-en="Portfolio">포트폴리오</p>
+    <h2 class="h2 portfolio-h rv" data-ko="이런 퀄리티로<br><em>만들어드립니다</em>" data-en="This Is the Quality<br><em>We Deliver</em>">이런 퀄리티로<br><em>만들어드립니다</em></h2>
+    <p class="portfolio-sub rv" data-ko="첫 번째 파트너 제품: 부미 심리스 퓨징브라. 상세페이지 제작, 캠페인 영상 제작, 인플루언서 마케팅, 스마트스토어 런칭까지 전 과정을 BUMI LAB이 진행했습니다." data-en="First partner product: Bumi Seamless Fusing Bra. BUMI LAB handled the entire process — detail page creation, campaign video production, influencer marketing, and Smartstore launch.">첫 번째 파트너 제품: 부미 심리스 퓨징브라. 상세페이지 제작, 캠페인 영상 제작, 인플루언서 마케팅, 스마트스토어 런칭까지 전 과정을 BUMI LAB이 진행했습니다.</p>
+  </div>
+  <div class="portfolio-showcase">
+    <div class="pf-main">
+      <img src="https://drive.google.com/thumbnail?id=1QQH0UXJTiuF6GgmfTMfRSAEeilDkr-Rn&sz=w900" alt="부미 심리스 퓨징브라">
+      <div class="pf-main-info">
+        <span class="pf-main-tag" data-ko="실제 파트너 제품" data-en="Live Partner Product">실제 파트너 제품</span>
+        <h3 class="pf-main-title" data-ko="부미 심리스 퓨징브라" data-en="Bumi Seamless Fusing Bra">부미 심리스 퓨징브라</h3>
+        <p class="pf-main-desc" data-ko="와이어·후크·봉제선 없는 심리스 이너웨어. 5가지 컬러 · M~2XL · 네이버 스마트스토어 판매 중" data-en="Seamless innerwear — no wire, no hook, no seams. 5 colors · M–2XL · Live on Naver Smartstore">와이어·후크·봉제선 없는 심리스 이너웨어. 5가지 컬러 · M~2XL · 네이버 스마트스토어 판매 중</p>
+      </div>
+    </div>
+    <div class="pf-aside">
+      <div class="pf-card">
+        <img src="https://drive.google.com/thumbnail?id=1mPOIuuv23BamlQIZtvlAthvd7MACEnJs&sz=w600" alt="">
+        <div class="pf-card-content">
+          <p class="pf-card-label" data-ko="서비스" data-en="Service">서비스</p>
+          <h4 class="pf-card-title" data-ko="상세페이지 제작" data-en="Detail Page">상세페이지 제작</h4>
+        </div>
+      </div>
+      <div class="pf-card">
+        <img src="https://drive.google.com/thumbnail?id=1MXiuuEkKxVJPgAbGGuknULcJpzOKQCux&sz=w600" alt="">
+        <div class="pf-card-content">
+          <p class="pf-card-label" data-ko="서비스" data-en="Service">서비스</p>
+          <h4 class="pf-card-title" data-ko="웹사이트 제작" data-en="Website">웹사이트 제작</h4>
+        </div>
+      </div>
+      <div class="pf-card" style="background:var(--forest2);">
+        <video autoplay muted loop playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.5;">
+          <source src="https://drive.google.com/uc?export=download&id=1Gxt33v2lr_PyS8hOSV-dTvX7K3g9Ztav" type="video/mp4">
+        </video>
+        <div class="pf-card-content">
+          <p class="pf-card-label" data-ko="서비스" data-en="Service">서비스</p>
+          <h4 class="pf-card-title" data-ko="캠페인 영상 제작" data-en="Campaign Video">캠페인 영상 제작</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="portfolio-cta">
+    <p data-ko="<strong>다음 포트폴리오는 귀사의 제품이 될 수 있습니다.</strong> 좋은 제품을 갖고 계신 제조사라면 언제든 문의주세요." data-en="<strong>Your product could be the next portfolio piece.</strong> If you're a manufacturer with a great product, reach out anytime."><strong>다음 포트폴리오는 귀사의 제품이 될 수 있습니다.</strong> 좋은 제품을 갖고 계신 제조사라면 언제든 문의주세요.</p>
+    <a href="https://smartstore.naver.com/spicules/products/13627724135" target="_blank" class="btn-wht" data-ko="스마트스토어에서 보기 →" data-en="View on Smartstore →">스마트스토어에서 보기 →</a>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     SECTION 7 — PRICING
+═══════════════════════════════════ -->
+<section class="sec pricing" id="pricing">
+  <p class="eyebrow" data-ko="수수료 구조" data-en="Fee Structure">수수료 구조</p>
+  <h2 class="h2 rv" data-ko="투명한<br><em>수수료 구조</em>" data-en="Transparent<br><em>Fee Structure</em>">투명한<br><em>수수료 구조</em></h2>
+  <div class="pricing-grid">
+    <div>
+      <div class="price-table">
+        <div class="price-row rv">
+          <div class="price-name">
+            <span data-ko="웹페이지 제작" data-en="Website Creation">웹페이지 제작</span>
+            <span data-ko="브랜드 홈페이지 · 제품 페이지 포함" data-en="Brand homepage · Product pages included">브랜드 홈페이지 · 제품 페이지 포함</span>
+          </div>
+          <span class="price-val" data-ko="협의" data-en="Negotiable">협의</span>
+        </div>
+        <div class="price-row rv" style="transition-delay:.05s">
+          <div class="price-name">
+            <span data-ko="상세페이지 제작" data-en="Detail Page Creation">상세페이지 제작</span>
+            <span data-ko="스마트스토어 · 쿠팡 최적화" data-en="Smartstore · Coupang optimized">스마트스토어 · 쿠팡 최적화</span>
+          </div>
+          <span class="price-val" data-ko="협의" data-en="Negotiable">협의</span>
+        </div>
+        <div class="price-row rv" style="transition-delay:.1s">
+          <div class="price-name">
+            <span data-ko="SNS · 블로그 운영" data-en="SNS & Blog Management">SNS · 블로그 운영</span>
+            <span data-ko="월정액 · 콘텐츠 제작 포함" data-en="Monthly fee · Content creation included">월정액 · 콘텐츠 제작 포함</span>
+          </div>
+          <span class="price-val" data-ko="협의" data-en="Negotiable">협의</span>
+        </div>
+        <div class="price-row rv" style="transition-delay:.15s">
+          <div class="price-name">
+            <span data-ko="유통 대행 수수료" data-en="Distribution Commission">유통 대행 수수료</span>
+            <span data-ko="판매량 기반 · 판매될 때만 발생" data-en="Sales-based · Only when products sell">판매량 기반 · 판매될 때만 발생</span>
+          </div>
+          <span class="price-val" data-ko="판매 기반" data-en="Per Sale">판매 기반</span>
+        </div>
+      </div>
+      <div class="pricing-img">
+        <img src="https://drive.google.com/thumbnail?id=1pILxpvnHdMZX-2feMg5XWDwMR0uStuYs&sz=w800" alt="">
+      </div>
+    </div>
+    <div class="pricing-notes">
+      <div class="p-note rv" style="transition-delay:.1s">
+        <p class="p-note-title" data-ko="초기 투자 최소화" data-en="Minimize Upfront Investment">초기 투자 최소화</p>
+        <p class="p-note-body" data-ko="유통 수수료는 판매가 발생할 때만 청구됩니다. 팔리지 않으면 유통 수수료는 없습니다. 제조사의 리스크를 최소화하는 구조입니다." data-en="Distribution fees are only charged when sales occur. No sales, no distribution fees. A structure designed to minimize manufacturer risk.">유통 수수료는 판매가 발생할 때만 청구됩니다. 팔리지 않으면 유통 수수료는 없습니다. 제조사의 리스크를 최소화하는 구조입니다.</p>
+      </div>
+      <div class="p-note rv" style="transition-delay:.2s">
+        <p class="p-note-title" data-ko="투명한 정산" data-en="Transparent Settlement">투명한 정산</p>
+        <p class="p-note-body" data-ko="판매 데이터와 정산 내역을 정기적으로 공유합니다. 어떤 채널에서 얼마나 팔렸는지 실시간으로 확인할 수 있습니다." data-en="Sales data and settlement details are shared regularly. You can track real-time performance across every channel.">판매 데이터와 정산 내역을 정기적으로 공유합니다. 어떤 채널에서 얼마나 팔렸는지 실시간으로 확인할 수 있습니다.</p>
+      </div>
+      <div class="p-note rv" style="transition-delay:.3s">
+        <p class="p-note-title" data-ko="맞춤 계약" data-en="Custom Contracts">맞춤 계약</p>
+        <p class="p-note-body" data-ko="제품 특성과 공급 조건에 따라 유연하게 계약 구조를 설계합니다. 먼저 상담 후 결정하세요." data-en="Contract structures are designed flexibly based on product characteristics and supply terms. Consult first, then decide.">제품 특성과 공급 조건에 따라 유연하게 계약 구조를 설계합니다. 먼저 상담 후 결정하세요.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════
+     SECTION 8 — PARTNER CTA
+═══════════════════════════════════ -->
+<div class="partner-cta" id="contact">
+  <div class="partner-cta-bg">
+    <img src="https://drive.google.com/thumbnail?id=1z5L9Wof2Rjw4t9xsMvCUbcCfdnGWCo5z&sz=w1200" alt="">
+  </div>
+  <div class="partner-cta-overlay"></div>
+  <div class="partner-cta-content rv">
+    <p class="cta-eyebrow" data-ko="파트너십 문의" data-en="Partnership Inquiry">파트너십 문의</p>
+    <h2 class="cta-h" data-ko="좋은 제품을<br>만드셨나요?<br><em>저희가 팔아드립니다</em>" data-en="Do You Make<br>Great Products?<br><em>We'll Sell Them For You</em>">좋은 제품을<br>만드셨나요?<br><em>저희가 팔아드립니다</em></h2>
+    <p class="cta-body" data-ko="상담은 무료입니다. 제품 정보를 공유해주시면 최적의 유통 플랜을 제안해드립니다." data-en="Consultation is free. Share your product information and we'll propose the optimal distribution plan.">상담은 무료입니다. 제품 정보를 공유해주시면 최적의 유통 플랜을 제안해드립니다.</p>
+    <div class="cta-btns">
+      <a href="mailto:algonany@naver.com" class="btn-wht" data-ko="이메일로 문의하기" data-en="Email Us">이메일로 문의하기</a>
+      <span class="btn-outline" style="border-color:rgba(247,244,239,.2);color:rgba(247,244,239,.3);cursor:default;pointer-events:none;" data-ko="010-6557-9600" data-en="010-6557-9600">010-6557-9600</span>
+    </div>
+  </div>
+</div>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="ft-top">
+    <div>
+      <a href="#" class="ft-logo">BUMI LAB</a>
+      <p class="ft-tagline" data-ko="좋은 제품, 저희가 팔아드립니다" data-en="Great Products. We'll Sell Them For You">좋은 제품, 저희가 팔아드립니다</p>
+      <p class="ft-desc" data-ko="제조사와 소비자를 직접 잇는 새로운 유통 모델. 콘텐츠 제작부터 다채널 유통까지 전 과정을 대행합니다." data-en="A new distribution model connecting manufacturers directly to consumers. Full-service from content creation to multi-channel distribution.">제조사와 소비자를 직접 잇는 새로운 유통 모델. 콘텐츠 제작부터 다채널 유통까지 전 과정을 대행합니다.</p>
+    </div>
+    <div class="ft-col">
+      <h4 data-ko="서비스" data-en="Services">서비스</h4>
+      <ul>
+        <li><a href="#services" data-ko="웹페이지 제작" data-en="Website Creation">웹페이지 제작</a></li>
+        <li><a href="#services" data-ko="상세페이지 제작" data-en="Detail Page">상세페이지 제작</a></li>
+        <li><a href="#services" data-ko="SNS · 블로그 운영" data-en="SNS & Blog">SNS · 블로그 운영</a></li>
+        <li><a href="#channels" data-ko="다채널 유통" data-en="Distribution">다채널 유통</a></li>
+      </ul>
+    </div>
+    <div class="ft-col">
+      <h4 data-ko="포트폴리오" data-en="Portfolio">포트폴리오</h4>
+      <ul>
+        <li><a href="https://smartstore.naver.com/spicules/products/13627724135" target="_blank" data-ko="심리스 퓨징브라" data-en="Seamless Fusing Bra">심리스 퓨징브라</a></li>
+      </ul>
+    </div>
+    <div class="ft-col">
+      <h4 data-ko="연락처" data-en="Contact">연락처</h4>
+      <ul>
+        <li><span style="font-size:13px;color:rgba(247,244,239,.3);">010-6557-9600</span></li>
+        <li><a href="mailto:algonany@naver.com">algonany@naver.com</a></li>
+        <li><a href="https://www.instagram.com/yooyounghan/" target="_blank">Instagram @yooyounghan</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="ft-bottom">© 2025 BUMI LAB. All rights reserved.</div>
+</footer>
+
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-1MCB59JCL0');
+// ── LANG ──
+let isKo = true;
+function toggleLang(){
+  isKo = !isKo;
+  document.getElementById('langBtn').textContent = isKo ? 'EN' : 'KO';
+  document.querySelectorAll('[data-ko]').forEach(el=>{
+    const t = isKo ? el.dataset.ko : el.dataset.en;
+    if(t) el.innerHTML = t;
+  });
+}
+
+// ── NAV SCROLL ──
+window.addEventListener('scroll',()=>{
+  document.getElementById('nav').classList.toggle('sc', window.scrollY > 50);
+});
+
+// ── REVEAL ──
+const obs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('in'); });
+},{threshold:0.08});
+document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
 </script>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
-    <title>BUMI LAB — Clean Science Ritual</title>
-    <meta name="description" content="부미랩(BUMI LAB) — 해양 스피큘 과학을 담은 K-뷰티 스킨케어 브랜드. 유니즈랩의 99.8% 고순도 스피큘 기술로 피부 본연의 생명력을 깨웁니다." />
-    <meta property="og:title" content="BUMI LAB — Clean Science Ritual" />
-    <meta property="og:description" content="Marine spicule science meets K-beauty ritual. 99.8% pure spicule technology by Unislab." />
-    <meta property="og:type" content="website" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=Noto+Serif+KR:wght@300;400;500;600&family=Noto+Sans+KR:wght@300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-    <script
-      defer
-      src="%VITE_ANALYTICS_ENDPOINT%/umami"
-      data-website-id="%VITE_ANALYTICS_WEBSITE_ID%"></script>
-  </body>
+</body>
 </html>
